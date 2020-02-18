@@ -1,0 +1,14 @@
+syntax = "proto2";
+import "enums.proto";
+
+//made buyer and farmer different in case we want to add pancard and other details of buyer
+message Buyer {
+  required string public_key = 1;
+  required string aadhar_card = 2;
+  required uint64 timestamp = 3;    //will not be updated
+  required string full_name = 4;
+  required state State = 5;
+  required uint32 pincode = 6;
+  required uint32 mobilenumber = 7;
+  required string district = 8;
+}
