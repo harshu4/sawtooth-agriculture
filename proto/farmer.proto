@@ -1,4 +1,4 @@
-//kept all protobuf different incase update is needed it will be easy 
+//kept all protobuf different incase update is needed it will be easy gi
 
 syntax = "proto2";
 import "enums.proto";
