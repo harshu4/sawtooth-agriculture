@@ -39,6 +39,17 @@ class MarketTransactionHandler(TransactionHandler):
                 state=state,
                 public_key=header.signer_public_key,
                 payload=payload)
+        if payload.action == agpayload_pb2.action.Value('register_buyer'):
+            _create_buyer(
+                state=state,
+                public_key=header.signer_public_key,
+                payload=payload)
+        if payload.action == agpayload_pb2.action.Value('register_transporter'):
+            _create_transporter (
+                state=state,
+                public_key=header.signer_public_key,
+                payload=payload)
+
 
 def _create_farmer(state,public_key,payload):
     state.set_farmer(
@@ -47,6 +58,18 @@ def _create_farmer(state,public_key,payload):
         data=payload.data,
         )
 
+def _create_buyer(state,public_key,payload):
+    state.set_buyer(
+
+        public_key=public_key,
+        data=payload.data,
+    )
+
+def _create_transporter(state,public_key,payload):
+    state.set_buyer(
+        public_key=public_key,
+        data=payload.data,
+    )
 
 def _get_farmer(state,public_key):
     data = state.get_farmer(

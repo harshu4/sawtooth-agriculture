@@ -71,7 +71,7 @@ signature = signer.sign(batch_header_bytes)
 batch = Batch(
     header=batch_header_bytes,
     header_signature=signature,
-    transactions=txns
+    transactions=txns 
 )
 
 batch_list_bytes = BatchList(batches=[batch]).SerializeToString()
