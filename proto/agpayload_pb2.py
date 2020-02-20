@@ -10,11 +10,11 @@ from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf import descriptor_pb2
 # @@protoc_insertion_point(imports)
-
+sys.path.insert(0, "../")
 _sym_db = _symbol_database.Default()
 
 
-import enums_pb2 as enums__pb2
+import proto.enums_pb2 as enums__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(

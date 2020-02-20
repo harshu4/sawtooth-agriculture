@@ -26,7 +26,7 @@ def get_farmer_address(public_key):
     public_key.encode('utf-8')).hexdigest()[:62]
 
 def get_buyer_address(public_key):
-    return NAMESPACE + AGENT_PREFIX + hashlib.sha512(
+    return NAMESPACE + BUYER_PREFIX + hashlib.sha512(
     public_key.encode('utf-8')).hexdigest()[:62]
 
 def get_transporter_address(public_key):

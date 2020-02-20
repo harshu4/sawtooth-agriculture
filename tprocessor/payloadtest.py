@@ -9,4 +9,4 @@ payloada.otp_tra.otp = 1234
 payloada.otp_tra.public_key = 'abc'
 
 obc = payload.AgricultureMarketPayload(payloada.SerializeToString())
-print(obc.data)
+d = obc.data

@@ -20,8 +20,7 @@ class AgricultureMarketPayload(object):
         if self._transaction.HasField('reg_far') and \
             self._transaction.Action == \
                 agpayload_pb2.action.Value('register_farmer'):
-            return self._transaction.reg_far
-
+                return self._transaction.reg_far
         if self._transaction.HasField('reg_buy') and \
             self._transaction.Action == \
                 agpayload_pb2.action.Value('register_buyer'):
