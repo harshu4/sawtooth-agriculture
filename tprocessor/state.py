@@ -3,6 +3,7 @@ import sys
 sys.path.insert(0, "../proto")
 import farmer_pb2
 import buyer_pb2
+import otp_pb2
 import transporter_pb2
 import addresser
 
@@ -52,7 +53,7 @@ class AgricultureMarketState(object):
 
     def set_transporter(self,public_key,data,timestamp=000):
         """Creates a new transoporter in state"""
-        address = addresser.get_transporter_address
+        address = addresser.get_transporter_address(public_key)
         transporter = transoporter_pb2.Transporter(
         public_key=data.public_key, full_name=data.full_name, timestamp=data.timestamp
         ,aadhar_card=data.aadhar_card,State=data.State,pincode=data.pincode,mobilenumber=data.mobilenumber
@@ -68,6 +69,20 @@ class AgricultureMarketState(object):
         updated_state[address] = data
         self._context.set_state(updated_state, timeout=self._timeout)
 
+    def set_otp(self,public_key,data,timestamp=000):
+        """Creates an otp state for otp verification
+            # TODO: verify that it came from otp server """
+
+        address = addresser.get_otp_address(mobilenumber,otp)    #this is called good practice
+        otpPayload = otp_pb2.Otp(
+            otp = data.otp, mobilenumber= data.mobilenumber , timestamp = data.timestamp
+        )
+        state_enties = self._context.get_state(
+        addresses = [address], timeout=self._timeout)
+        data = optPayload.SerializeToString()
+        updated_state = {}
+        updated_state[address] = data
+        self._context.set_state(updated_state,timeout=self.timeout)
 
 
     def get_farmer(self,public_key):

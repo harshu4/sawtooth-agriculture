@@ -9,6 +9,6 @@ message Buyer {
   required string full_name = 4;
   required state State = 5;
   required uint32 pincode = 6;
-  required uint32 mobilenumber = 7;
+  required uint64 mobilenumber = 7;
   required string district = 8;
 }

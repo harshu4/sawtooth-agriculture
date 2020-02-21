@@ -1,0 +1,8 @@
+syntax "proto2"
+
+message Otp{
+
+  required uint32 otp = 1
+  required uint64 mobilenumber = 2
+  required uint64 timestamp = 3
+}
