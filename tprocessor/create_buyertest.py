@@ -19,22 +19,23 @@ signer = CryptoFactory(context).new_signer(private_key)
 public_key = signer.get_public_key().as_hex()
 payload = agpayload_pb2.Realpayload()
 payload.Action = agpayload_pb2.action.Value('register_buyer')
-payload.reg_buy.public_key = public_key
 payload.reg_buy.aadhar_card = 'dfv98fsdff98s83'
 payload.reg_buy.timestamp = 12242343535
 payload.reg_buy.full_name  = 'Bro Code'
 payload.reg_buy.State = enums_pb2.state.Value('Gujarat')
 payload.reg_buy.pincode = 123456
-payload.reg_buy.mobilenumber = 394834585
+payload.reg_buy.mobilenumber = 9999999999
 payload.reg_buy.district = 'sachin'
-input = addresser.get_buyer_address(public_key)
+payload.reg_buy.otp = 1234
+input = [addresser.get_buyer_address(public_key),addresser.get_otp_address(9999999999,1234)]
+
 print(input)
 payload_bytes = payload.SerializeToString()
 txn_header_bytes = TransactionHeader(
     family_name='agriculture_market',
     family_version='0.1',
-    inputs=[input],
-    outputs=[input],
+    inputs=input,
+    outputs=input,
     signer_public_key=signer.get_public_key().as_hex(),
     # In this example, we're signing the batch with the same private key,
     # but the batch can be signed by another party, in which case, the
@@ -71,7 +72,7 @@ signature = signer.sign(batch_header_bytes)
 batch = Batch(
     header=batch_header_bytes,
     header_signature=signature,
-    transactions=txns 
+    transactions=txns
 )
 
 batch_list_bytes = BatchList(batches=[batch]).SerializeToString()
