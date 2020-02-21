@@ -1,0 +1,67 @@
+<html>
+
+<head>
+    <title>
+        sawtooth-agriculture testing client
+    </title>
+    <script src="scripts/bundle.js"></script>
+</head>
+
+<body>
+    <div id="keyhandler">
+        <h2>Handle public/private key</h2>
+        <button id="recreatekeypair">Re-Create key pair</button>
+    </div>
+    <div id="register-account">
+        <h2>Register account on sawtooth-agriculture</h1>
+            <h3>Account type</h3>
+            <input type="radio" id="farmer" name="actype" value="farmer">
+            <label for="farmer">Farmer</label>&nbsp;&nbsp;
+            <input type="radio" id="buyer" name="actype" value="buyer">
+            <label for="buyer">Buyer</label> &nbsp;&nbsp;
+            <input type="radio" id="transporter" name="actype" value="transporter">
+            <label for="transporter">Transporter</label><br><br>
+            <input type="text" id="aadhar_card" placeholder="Aadhar card" /><br>
+            <input type="text" id="full_name" placeholder="Full name" /><br>
+            <input type="text" id="mobile_number" placeholder="Mobile number" />&nbsp;&nbsp;
+            <button id="sendotp">Send Otp</button>
+            <input type="text" id="otp" placeholder="otp" style="display: none;" /><br>
+            <input type="text" id="district" placeholder="District" /><br>
+            <input type="text" id="pincode" placeholder="Pincode" /><br>
+            <input type="text" id="drivinglisence" style="display: none;" placeholder="Driving license" /><br><br>
+            <select id="state">
+                <option value="0">AndhraPradesh</option>
+                <option value="1">ArunachalPradesh</option>
+                <option value="2">Assam</option>
+                <option value="3">Bihar</option>
+                <option value="4">Chhattisgarh</option>
+                <option value="5">Goa</option>
+                <option value="6" selected>Gujarat</option>
+                <option value="7">Haryana</option>
+                <option value="8">HimachalPradesh</option>
+                <option value="9">JammuandKashmir</option>
+                <option value="10">Jharkhand</option>
+                <option value="11">Karnataka</option>
+                <option value="12">Kerala</option>
+                <option value="13">MadyaPradesh</option>
+                <option value="14">Maharashtra</option>
+                <option value="15">Manipur</option>
+                <option value="16">Meghalaya</option>
+                <option value="17">Mizoram</option>
+                <option value="18">Nagaland</option>
+                <option value="19">Orissa</option>
+                <option value="20">Punjab</option>
+                <option value="21">Rajasthan</option>
+                <option value="22">Sikkim</option>
+                <option value="23">TamilNadu</option>
+                <option value="24">Telagana</option>
+                <option value="25">Tripura</option>
+                <option value="26">Uttaranchal</option>
+                <option value="27">UttarPradesh</option>
+                <option value="28">WestBengal</option>
+            </select><br><br>
+            <button id="register">Register</button>
+    </div>
+</body>
+
+</html>
