@@ -19,7 +19,7 @@ message Register_farmer{
   required uint32 mobilenumber = 7;
   required string district= 8;
   optional bytes photo = 9;      //change to required in production build
-  optional string transaction_id = 10;
+  required uint32 otp = 10;
 }
 
 message Register_buyer{
@@ -31,7 +31,7 @@ message Register_buyer{
   required uint32 pincode = 6;
   required uint32 mobilenumber = 7;
   required string district = 8;
-  optional string transaction_id =9;
+  required uint32 otp =9;
 }
 
 message Register_transporter{
@@ -45,7 +45,7 @@ message Register_transporter{
   required string district = 8;
   required string driving_license = 9;
   optional bytes photo = 10;       //change to required in production build
-  optional string transaction_id = 11;
+  required uint32 otp = 11;
 }
 
 message Otp_transaction{
