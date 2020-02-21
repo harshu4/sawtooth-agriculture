@@ -10,7 +10,7 @@ message Farmer{
   required string full_name = 4;
   required state State = 5;
   required uint32 pincode = 6;
-  required uin64 mobilenumber = 7;
+  required uint64 mobilenumber = 7;
   required string district= 8;
   optional bytes photo = 9;      //change to required in production build
 }

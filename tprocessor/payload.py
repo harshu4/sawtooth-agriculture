@@ -21,17 +21,17 @@ class AgricultureMarketPayload(object):
             self._transaction.Action == \
                 agpayload_pb2.action.Value('register_farmer'):
                 return self._transaction.reg_far
-        if self._transaction.HasField('reg_buy') and \
+        elif self._transaction.HasField('reg_buy') and \
             self._transaction.Action == \
                 agpayload_pb2.action.Value('register_buyer'):
             return self._transaction.reg_buy
 
-        if self._transaction.HasField('reg_tra') and \
+        elif self._transaction.HasField('reg_tra') and \
             self._transaction.Action == \
                 agpayload_pb2.action.Value('register_transporter'):
             return self._transaction.reg_tra
 
-        if self._transaction.HasField('otp_tra') and \
+        elif self._transaction.HasField('otp_tra') and \
             self._transaction.Action == \
                 agpayload_pb2.action.Value('otp_transaction'):
             return self._transaction.otp_tra

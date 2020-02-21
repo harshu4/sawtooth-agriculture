@@ -18,24 +18,18 @@ private_key = context.new_random_private_key()
 signer = CryptoFactory(context).new_signer(private_key)
 public_key = signer.get_public_key().as_hex()
 payload = agpayload_pb2.Realpayload()
-payload.Action = agpayload_pb2.action.Value('register_farmer')
-payload.reg_far.aadhar_card = 'dfv98fsdff98s83'
-payload.reg_far.timestamp = 12242343
-payload.reg_far.full_name  = 'Bro Code'
-payload.reg_far.otp = 1234
-payload.reg_far.State = enums_pb2.state.Value('Gujarat')
-payload.reg_far.pincode = 123456
-payload.reg_far.mobilenumber = 9999999999
-payload.reg_far.district = 'sachin'
-input = [addresser.get_farmer_address(public_key),addresser.get_otp_address(9999999999,1234)]
-
+payload.Action = agpayload_pb2.action.Value('otp_transaction')
+payload.otp_tra.timestamp = 1224
+payload.otp_tra.mobilenumber = 9999999999
+payload.otp_tra.otp = 1234
+input = addresser.get_otp_address(9999999999,1234)
 print(input)
 payload_bytes = payload.SerializeToString()
 txn_header_bytes = TransactionHeader(
     family_name='agriculture_market',
     family_version='0.1',
-    inputs=input,
-    outputs=input,
+    inputs=[input],
+    outputs=[input],
     signer_public_key=signer.get_public_key().as_hex(),
     # In this example, we're signing the batch with the same private key,
     # but the batch can be signed by another party, in which case, the

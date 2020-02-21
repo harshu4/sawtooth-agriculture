@@ -39,9 +39,9 @@ def get_transporter_address(public_key):
 def get_otp_address(mobilenumber,otp):
     """smart enough to handle mobile number with +91 and otp of random length"""
     #ask obd otp size and remind him to keep mobile number to 10 digit
-    return NAMESPACE + OTP_PREFIX + str(mobilenumber)[0:10] + str(otp) + hashlib.sha512(
-    public_key.encode('utf-8')).hexdigest()[:52-len(otp)]
-    )
+    return NAMESPACE + OTP_PREFIX + hashlib.sha512(
+    (str(mobilenumber)+str(otp)).encode('UTF-8')).hexdigest()[:62]
+
 
 def get_address_type(address):
     if address[:len(NAMESPACE)] != NAMESPACE:
@@ -55,5 +55,7 @@ def get_address_type(address):
         return AddressSpace.BUYER
     if infix == '02':
         return AddressSpace.TRANSPORTER
+    if infix == '03':
+        return AddressSpace.OTP
 
     return AddressSpace.OTHER_FAMILY

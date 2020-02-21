@@ -13,14 +13,14 @@ from google.protobuf import descriptor_pb2
 _sym_db = _symbol_database.Default()
 
 sys.path.insert(0, "../")
-import proto.enums_pb2 as enums__pb2
+import enums_pb2 as enums__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='transporter.proto',
   package='',
   syntax='proto2',
-  serialized_pb=_b('\n\x11transporter.proto\x1a\x0b\x65nums.proto\"\xd4\x01\n\x0bTransporter\x12\x12\n\npublic_key\x18\x01 \x02(\t\x12\x13\n\x0b\x61\x61\x64har_card\x18\x02 \x02(\t\x12\x11\n\ttimestamp\x18\x03 \x02(\x04\x12\x11\n\tfull_name\x18\x04 \x02(\t\x12\x15\n\x05State\x18\x05 \x02(\x0e\x32\x06.state\x12\x0f\n\x07pincode\x18\x06 \x02(\r\x12\x14\n\x0cmobilenumber\x18\x07 \x02(\r\x12\x10\n\x08\x64istrict\x18\x08 \x02(\t\x12\x17\n\x0f\x64riving_license\x18\t \x02(\t\x12\r\n\x05photo\x18\n \x01(\x0c')
+  serialized_pb=_b('\n\x11transporter.proto\x1a\x0b\x65nums.proto\"\xd4\x01\n\x0bTransporter\x12\x12\n\npublic_key\x18\x01 \x02(\t\x12\x13\n\x0b\x61\x61\x64har_card\x18\x02 \x02(\t\x12\x11\n\ttimestamp\x18\x03 \x02(\x04\x12\x11\n\tfull_name\x18\x04 \x02(\t\x12\x15\n\x05State\x18\x05 \x02(\x0e\x32\x06.state\x12\x0f\n\x07pincode\x18\x06 \x02(\r\x12\x14\n\x0cmobilenumber\x18\x07 \x02(\x04\x12\x10\n\x08\x64istrict\x18\x08 \x02(\t\x12\x17\n\x0f\x64riving_license\x18\t \x02(\t\x12\r\n\x05photo\x18\n \x01(\x0c')
   ,
   dependencies=[enums__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -79,7 +79,7 @@ _TRANSPORTER = _descriptor.Descriptor(
       options=None),
     _descriptor.FieldDescriptor(
       name='mobilenumber', full_name='Transporter.mobilenumber', index=6,
-      number=7, type=13, cpp_type=3, label=2,
+      number=7, type=4, cpp_type=4, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
