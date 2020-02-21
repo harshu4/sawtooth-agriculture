@@ -1,58 +1,54 @@
 syntax = "proto2";
 import "enums.proto";
-enum action {
 
-register_farmer= 0;
-register_buyer= 1;
-register_transporter= 2;
-otp_transaction= 3;
+enum action {
+  register_farmer= 0;
+  register_buyer= 1;
+  register_transporter= 2;
+  otp_transaction= 3;
 }
 
 
 message Register_farmer{
-  required string public_key = 1;
-  required string aadhar_card = 2;
-  required uint64 timestamp = 3;    //will not be updated
-  required string full_name = 4;
-  required state State = 5;
-  required uint32 pincode = 6;
-  required uint32 mobilenumber = 7;
-  required string district= 8;
-  optional bytes photo = 9;      //change to required in production build
-  required uint32 otp = 10;
+  required string aadhar_card = 1;
+  required uint64 timestamp = 2;    //will not be updated
+  required string full_name = 3;
+  required state State = 4;
+  required uint32 pincode = 5;
+  required uint32 mobilenumber = 6;
+  required string district= 7;
+  optional bytes photo = 8;      //change to required in production build
+  required uint32 otp = 9;
 }
 
 message Register_buyer{
-  required string public_key = 1;
-  required string aadhar_card = 2;
-  required uint64 timestamp = 3;    //will not be updated
-  required string full_name = 4;
-  required state State = 5;
-  required uint32 pincode = 6;
-  required uint32 mobilenumber = 7;
-  required string district = 8;
+  required string aadhar_card = 1;
+  required uint64 timestamp = 2;    //will not be updated
+  required string full_name = 3;
+  required state State = 4;
+  required uint32 pincode = 5;
+  required uint32 mobilenumber = 6;
+  required string district = 7;
+  optional bytes photo = 8;   
   required uint32 otp =9;
 }
 
 message Register_transporter{
-  required string public_key = 1;
-  required string aadhar_card = 2;
-  required uint64 timestamp = 3;    //will not be updated
-  required string full_name = 4;
-  required state State = 5;
-  required uint32 pincode = 6;
-  required uint32 mobilenumber = 7;
-  required string district = 8;
-  required string driving_license = 9;
-  optional bytes photo = 10;       //change to required in production build
-  required uint32 otp = 11;
+  required string aadhar_card = 1;
+  required uint64 timestamp = 2;    //will not be updated
+  required string full_name = 3;
+  required state State = 4;
+  required uint32 pincode = 5;
+  required uint32 mobilenumber = 6;
+  required string district = 7;
+  required string driving_license = 8;
+  optional bytes photo = 9;       //change to required in production build
+  required uint32 otp = 10;
 }
 
 message Otp_transaction{
     required string mobilenumber = 1;
     required uint32 otp =2;
-    required string public_key =3;
-
 }
 
 message Realpayload{
