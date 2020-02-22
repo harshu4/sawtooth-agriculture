@@ -16,7 +16,7 @@ message Farmer{
   repeated sell_order sellOrder = 10;
 }
 
-
+/*
 message sell_order{
   required string public_key = 1;
   repeated assets assets_sold = 2;
@@ -32,3 +32,4 @@ message sell_order{
   optional vegetable_long  vegetableShort =12;
   required uint32 weight_sold = 13;
 }
+*/

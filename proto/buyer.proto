@@ -20,7 +20,7 @@ message Buyer {
   required string district = 8;
 }
 
-
+/*
 message buy_order{
   required string public_key = 1;
   repeated assets assets_bought = 2;
@@ -36,3 +36,4 @@ message buy_order{
   optional vegetable_long  vegetableShort =12;
   required uint32 weight_bought = 13;
 }
+*/

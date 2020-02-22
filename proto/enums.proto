@@ -107,9 +107,3 @@ message assets{
   required uint64 timestamp = 14;
   optional string previous_asset_pubkey = 15;
 }
-
-//it will be in millisecods
-enum ordertime{
-
-
-}

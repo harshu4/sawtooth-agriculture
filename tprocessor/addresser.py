@@ -17,9 +17,9 @@ class AddressSpace(enum.IntEnum):
     TRANSPORTER = 2
     OTP = 3
     OTHER_FAMILY = 100
-#   ORDER = 3
-#   REQUEST = 4
-#   SOLD = 5
+#   BUY_ORDER = 3
+#   SELL_ORDER = 4
+#    = 5y
 #   ASSET = 6
 
 
