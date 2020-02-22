@@ -1,6 +1,13 @@
 syntax = "proto2";
 import "enums.proto";
 
+
+message Buy_Order {
+  required string buyer_key = 1;
+  required uint64 timestamp = 2;
+
+}
+
 //made buyer and farmer different in case we want to add pancard and other details of buyer
 message Buyer {
   required string public_key = 1;
@@ -11,4 +18,21 @@ message Buyer {
   required uint32 pincode = 6;
   required uint64 mobilenumber = 7;
   required string district = 8;
+}
+
+
+message buy_order{
+  required string public_key = 1;
+  repeated assets assets_bought = 2;
+  required uint32 weight = 3;
+  required uint64 timestamp = 4;
+  required string buyer_pubkey = 5;
+  required type type_of_food = 6;
+  optional pulses Pulses = 7;
+  optional grains Grains = 8;
+  optional fruits_long fruitsLong = 9;
+  optional fruits_short fruitsShort = 10;
+  optional vegetable_short vegetableLong = 11;
+  optional vegetable_long  vegetableShort =12;
+  required uint32 weight_bought = 13;
 }

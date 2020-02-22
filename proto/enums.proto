@@ -32,3 +32,84 @@ enum state  {
   UttarPradesh = 27;
   WestBengal = 28;
 }
+
+enum type{
+  vegetable_short = 1;
+  vegetable_long = 2;
+  fruits_short = 3;
+  fruits_long = 4;
+  grains = 5;
+  pulses = 6;
+
+}
+//Short means life span == 2 days max (most hard to deal with)
+//Long means life span 2 weeks to 1 year (onion)
+//Grains have a great life span so don't worry
+enum vegetable_short {
+  Tomato = 0;
+  Lemons = 1;
+  Cauliflower = 2;
+  Spinach = 3;
+}
+
+enum vegetable_long {
+  Potato = 0;
+  Onion = 1;
+  Garlic = 2;
+  Cabbage = 3;
+  Cauliflower = 4;
+  Beets = 5;
+}
+
+enum fruits_short{
+  Strawberries =0;
+  Cherries = 1;
+  Bananas =2 ;
+  Pineapple = 3;
+}
+
+enum fruits_long{
+  Apples = 0;
+  Orange = 1;
+  Pomegranate = 2;
+}
+
+enum grains{
+  Wheat = 0;
+  Rice = 1;
+  Maize =2;
+  Barley = 3;
+}
+// lasts for a year so don't worry
+enum pulses{
+  Mung = 0;
+  ToovarDaal = 1;
+  Rajma = 2;
+  Urad = 3;
+  Vatana = 4;
+}
+
+message assets{
+
+  required uint32 weight =1 ;
+  required string previous_owner_pubkey = 2;
+  required string previous_owner_district = 3;
+  required string current_owner_pubkey = 4;
+  required string current_owner_district = 5;
+  required type type_of_food = 6;
+  optional pulses Pulses = 7;
+  optional grains Grains = 8;
+  optional fruits_long = 9;
+  optional fruits_short = 10;
+  optional vegetable_short = 11;
+  optional vegetable_long =12 ;
+  optional string transporter_pubkey =13;
+  required uint64 timestamp = 14;
+  optional string previous_asset_pubkey = 15;
+}
+
+//it will be in millisecods
+enum ordertime{
+
+
+}
