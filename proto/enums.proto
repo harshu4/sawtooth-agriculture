@@ -101,9 +101,9 @@ message assets{
 
   required uint32 weight =1 ;
   optional string previous_owner_pubkey = 2;
-  optional string previous_owner_district = 3;
+  optional uint32 previous_owner_pincode = 3;
   required string current_owner_pubkey = 4;
-  required string current_owner_district = 5;
+  required uint32 current_owner_pincode = 5;
   required type type_of_food = 6;
   optional pulses Pulses = 7;
   optional grains Grains = 8;

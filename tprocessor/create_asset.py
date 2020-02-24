@@ -22,17 +22,17 @@ public_key_asset = signer_asset.get_public_key().as_hex()
 public_key = signer.get_public_key().as_hex()
 print(f"public key of famer {public_key} and public key of asset {public_key_asset}")
 payload = agpayload_pb2.Realpayload()
-payload.Action = agpayload_pb2.action.create_asset
+payload.Action = agpayload_pb2.action.Value('create_asset')
 payload.cre_ass.public_key = public_key_asset
 payload.cre_ass.weight = 5
-payload.cre_ass.current_owner_pubkey  = public_key
+payload.cre_ass.current_owner_pubkey  = '03b36c150df64c40c42c11f9f45b0be5aa406df7404696e0d9ca947fc227a43bf1'
 payload.cre_ass.current_owner_pincode = 394230
-payload.cre_ass.type_of_food = enums_pb2.type.vegetable_shortt
-payload.cre_ass.vegetable_short = enums_pb2.vegetable_shortt.Tomato
+payload.cre_ass.type_of_food = enums_pb2.type.Value('vegetable_shortt')
+payload.cre_ass.Vegetable_short = enums_pb2.vegetable_short.Value('Tomato')
 payload.cre_ass.timestamp = 00000
-payload.cre_ass.district = 'sachin'
-payload.cre_ass.Status = enums_pb2.status.OrderAdded
-input = [addresser.get_farmer_address(public_key),addresser.get_asset_address(public_key_asset)]
+payload.cre_ass.Status = enums_pb2.status.Value('OrderAdded')
+input = ['add8ab009179875ea87b8760c805a1bc0c8cfc4d9b36a0acc08defd2452894a8833b58',addresser.get_asset_address(public_key_asset)]
+print(input)
 
 payload_bytes = payload.SerializeToString()
 txn_header_bytes = TransactionHeader(

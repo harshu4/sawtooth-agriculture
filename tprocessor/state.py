@@ -4,6 +4,7 @@ sys.path.insert(0, "../proto")
 import farmer_pb2
 import buyer_pb2
 import otp_pb2
+import enums_pb2
 import transporter_pb2
 import addresser
 
@@ -22,12 +23,10 @@ class AgricultureMarketState(object):
         address_otp = addresser.get_otp_address(data.mobilenumber,data.otp)
         state_entries_otp = self._context.get_state(
             addresses=[address_otp], timeout=self._timeout)
-        otper.ParseFromString(state_entries_otp[0].data)
-
         if not state_entries_otp:
-
             raise InvalidTransaction('No otp was verified on this number')
-        elif otper.otp != data.otp :
+        otper.ParseFromString(state_entries_otp[0].data)
+        if otper.otp != data.otp :
             raise InvalidTransaction('Wrong otp retry dude')
 
         farmer = farmer_pb2.Farmer(
@@ -127,11 +126,13 @@ class AgricultureMarketState(object):
         """It creates asset can't you read dumbo !"""
         address = addresser.get_asset_address(data.public_key)
         address_farmer = addresser.get_farmer_address(data.current_owner_pubkey)
-        data_type = self.type(data)
+
+        data_type = typee(data)
+
         farmer =  farmer_pb2.Farmer()
         assetPayload = enums_pb2.assets(
             weight = data.weight,current_owner_pubkey = data.current_owner_pubkey,
-            current_owner_pincode = data.current_owner_pincode,type_of_food = data.type_of_food,
+                current_owner_pincode = data.current_owner_pincode,type_of_food = data.type_of_food,
             timestamp = timestamp , Status = enums_pb2.status.Value('OrderAdded')
             ,public_key = data.public_key)
 
@@ -154,17 +155,17 @@ class AgricultureMarketState(object):
             addresses=[address], timeout=self._timeout)
         state_entries_farm = self._context.get_state(
             addresses=[address_farmer] ,timeout=self._timeout)
+
         if state_entries:
             raise InvalidTransaction('Already exist , asset already used')
         if not state_entries_farm:
             raise InvalidTransaction('No farmer by this pubkey exist')
         farmer.ParseFromString(state_entries_farm[0].data)
-        add_asset = farmer.assets_sold.add()
-        add_asset = assetPayload
+        add_asset = farmer.assets_sold.extend([assetPayload])
         data_farm = farmer.SerializeToString()
-        data = assetsPayload.SerializeToString()
+        data = assetPayload.SerializeToString()
         updated_state_farm = {}
-        updatad_state_farm[address_farmer] = data_farm
+        updated_state_farm[address_farmer] = data_farm
         updated_state = {}
         updated_state[address] = data
         self._context.set_state(updated_state, timeout=self._timeout)
@@ -182,29 +183,30 @@ class AgricultureMarketState(object):
 
 
 
-    def type(data):
-        if data.HasField('Pulses') and \
-            data.type_of_food == \
-                enums_pb2.type.Value('pulsess'):
-            return [data.Pulses,1]
-        elif data.HasField('Vegetable_short') and \
-            data.type_of_food == \
-                enums_pb2.type.Value('vegetable_shortt'):
-            return [data.Vegetable_short,2]
-        elif data.HasField('Vegetable_long') and \
-            data.type_of_food == \
-                enums_pb2.type.Value('vegetable_longg'):
-            return [data.Vegetable_long,3]
-        elif data.HasField('Fruits_long') and \
-            data.type_of_food == \
-                enums_pb2.type.Value('fruits_longg'):
-            return [data.Fruits_long,4]
-        elif data.HasField('Fruits_short') and \
-            data.type_of_food == \
-                enums_pb2.type.Value('fruits_shortt'):
-            return [data.Fruits_short,5]
-        elif data.HasField('Grains') and \
-            data.type_of_food == \
-                enums_pb2.type.Value('grainss'):
-            return [data.Grains,6]
-        raise InvalidTransaction("THE FRUIT TYPE IS WRONG")
+def typee(data):
+
+    if data.HasField('Pulses') and \
+        data.type_of_food == \
+            enums_pb2.type.Value('pulsess'):
+        return [data.Pulses,1]
+    elif data.HasField('Vegetable_short') and \
+        data.type_of_food == \
+            enums_pb2.type.Value('vegetable_shortt'):
+        return [data.Vegetable_short,2]
+    elif data.HasField('Vegetable_long') and \
+        data.type_of_food == \
+            enums_pb2.type.Value('vegetable_longg'):
+        return [data.Vegetable_long,3]
+    elif data.HasField('Fruits_long') and \
+        data.type_of_food == \
+            enums_pb2.type.Value('fruits_longg'):
+        return [data.Fruits_long,4]
+    elif data.HasField('Fruits_short') and \
+        data.type_of_food == \
+            enums_pb2.type.Value('fruits_shortt'):
+        return [data.Fruits_short,5]
+    elif data.HasField('Grains') and \
+        data.type_of_food == \
+            enums_pb2.type.Value('grainss'):
+        return [data.Grains,6]
+    raise InvalidTransaction("THE FRUIT TYPE IS WRONG")
