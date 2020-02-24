@@ -195,24 +195,48 @@ class AgricultureMarketState(object):
             addresses=[address_farmer] ,timeout=self._timeout)
         state_entries_buy = self._context.get_state(
             addresses=[address_buyer] , timeout = self._timeout)
-        if not state_entries or not state_entries_farm or not state_entries_buy:
-            raise InvalidTransaction("No No that is so wrong !")
+        if not state_entries:
+            raise InvalidTransaction("No No that is so wrong !  1")
+        if not state_entries_buy:
+            raise InvalidTransaction("No No that is so wrong !  2")
+        if not state_entries_farm:
+            raise InvalidTransaction("No No that is so wrong ! 3")
         farmer.ParseFromString(state_entries_farm[0].data)
         asset.ParseFromString(state_entries[0].data)
-        buyer.ParseFromString(state_entries[0].data)
+        buyer.ParseFromString(state_entries_buy[0].data)
         i = 0
         index = None
+
         while i < len(farmer.assets_sold):
             if farmer.assets_sold[i].public_key == data.public_key:
-                index = i
+
+                index = i+1
+            i +=1
         if not index:
             raise InvalidTransaction("No You don't have the asset")
-        asset.previous_owner_pubkey.extend(asset.current_owner_pubkey)
-        asset.previous_owner_pincode.extend(asset.current_owner_pincode)
+        index = index-1
+        print("1")
+        asset.previous_owner_pubkey.extend([asset.current_owner_pubkey])
+        print("2")
+        asset.previous_owner_pincode.extend([asset.current_owner_pincode])
+        print("3")
         asset.current_owner_pubkey = data.current_owner_pubkey
         asset.current_owner_pincode = data.current_owner_pincode
-        buyer.assets_bought.extend(asset)
+        buyer.assets_bought.extend([asset])
         del farmer.assets_sold[index]
+        data_farm = farmer.SerializeToString()
+        data = asset.SerializeToString()
+        data_buyer = buyer.SerializeToString()
+        updated_state_farm = {}
+        updated_state_farm[address_farmer] = data_farm
+        updated_state = {}
+        updated_state[address] = data
+        updated_state_buy = {}
+        updated_state_buy[address_buyer] = data_buyer
+        self._context.set_state(updated_state, timeout=self._timeout)
+        print('hello')
+        self._context.set_state(updated_state_farm, timeout=self._timeout)
+        self._context.set_state(updated_state_buy, timeout=self._timeout)
 def typee(data):
 
     if data.HasField('Pulses') and \

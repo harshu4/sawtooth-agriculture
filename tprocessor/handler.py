@@ -32,7 +32,7 @@ class MarketTransactionHandler(TransactionHandler):
         payload = pld.AgricultureMarketPayload(transaction.payload)
         state = ste.AgricultureMarketState(context)
 
-
+        print('Transaction received')
 
         if payload.action == agpayload_pb2.action.Value('register_farmer'):
             _create_farmer(
@@ -105,6 +105,7 @@ def _create_asset(state,public_key,payload):
 
 
 def _transfer_asset(state,public_key,payload):
+    print('we are here')
     state.transfer_asset(
         public_key = public_key,
         data = payload.data

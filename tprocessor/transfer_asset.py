@@ -7,34 +7,40 @@ from sawtooth_sdk.protobuf.transaction_pb2 import TransactionHeader
 from sawtooth_sdk.protobuf.transaction_pb2 import Transaction
 from sawtooth_sdk.protobuf.batch_pb2 import BatchHeader,Batch,BatchList
 from sawtooth_signing import create_context
-from sawtooth_signing import CryptoFactory
 from sawtooth_signing.secp256k1 import Secp256k1PrivateKey
+from sawtooth_signing import CryptoFactory
 import urllib.request
 from urllib.error import HTTPError
 import addresser
 
-PRIVATE_KEY = '6ad6345339f537a73315a850dfadda1e35710b89c35598f55482ebabe87633e1'
-PUBLIC_KEY = '0240678f514587dbd73ab911c21456c30efc096c33e3366902adf190fcda441d3b'
+PRIVATE_KEY = '347bd546500cdc8c41cf577406c4d3ed84d7bf7a4550848373b6aaf6ae5a14b2'
+PUBLIC_KEY = '03bf808bdfe9cd5bf861d8b79b6eea8acbc65c4a5bb080f2ec4081cad34ed1f705'
 
+PRIVATE_KEY_ASSET = 'b5086b76968a86b137b26490295075c3cb4bd039daee6ac052d0b05db57849fb'
+PUBLIC_KEY_ASSET = '03b5d33a56bb507b7948e9972ab80bb58ec8cb1981d5eb70b8aba06139e1566668'
 
+PRIVATE_KEY_BUYER = '6ad6345339f537a73315a850dfadda1e35710b89c35598f55482ebabe87633e1'
+PUBLIC_KEY_BUYER = '0240678f514587dbd73ab911c21456c30efc096c33e3366902adf190fcda441d3b'
 
 context = create_context('secp256k1')
 private_key = Secp256k1PrivateKey.from_hex(PRIVATE_KEY)
+private_key_asset = Secp256k1PrivateKey.from_hex(PRIVATE_KEY_ASSET)
 signer = CryptoFactory(context).new_signer(private_key)
-public_key = signer.get_public_key().as_hex()
-payload = agpayload_pb2.Realpayload()
-payload.Action = agpayload_pb2.action.Value('register_buyer')
-payload.reg_buy.aadhar_card = 'dfv98fsdff98s83'
-payload.reg_buy.timestamp = 12242343535
-payload.reg_buy.full_name  = 'Bro Code'
-payload.reg_buy.State = enums_pb2.state.Value('Gujarat')
-payload.reg_buy.pincode = 123456
-payload.reg_buy.mobilenumber = 9999999999
-payload.reg_buy.district = 'sachin'
-payload.reg_buy.otp = 1234
-input = [addresser.get_buyer_address(public_key),addresser.get_otp_address(9999999999,1234)]
+signer_asset = CryptoFactory(context).new_signer(private_key_asset)
+public_key_asset = PUBLIC_KEY_ASSET
+public_key = PUBLIC_KEY
 
-print(input)
+payload = agpayload_pb2.Realpayload()
+print(type(payload))
+payload.Action = agpayload_pb2.action.Value('transfer_asset')
+payload.tra_ass.public_key = public_key_asset
+payload.tra_ass.current_owner_pubkey = PUBLIC_KEY_BUYER
+payload.tra_ass.current_owner_pincode = 391230
+payload.tra_ass.timestamp = 0000
+
+input = [addresser.get_farmer_address(PUBLIC_KEY),addresser.get_asset_address(PUBLIC_KEY_ASSET),
+        addresser.get_buyer_address(PUBLIC_KEY_BUYER)]
+
 payload_bytes = payload.SerializeToString()
 txn_header_bytes = TransactionHeader(
     family_name='agriculture_market',
