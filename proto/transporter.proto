@@ -12,6 +12,7 @@ message Transporter{
   required string district = 8;
   required string driving_license = 9;
   optional bytes photo = 10;       //change to required in production build
+  repeated assets assets_transfered = 11;
 }
 
 /*

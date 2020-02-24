@@ -13,7 +13,7 @@ message Farmer{
   required uint64 mobilenumber = 7;
   required string district= 8;
   optional bytes photo = 9;      //change to required in production build
-  repeated sell_order sellOrder = 10;
+  repeated assets assets_sold = 10;
 }
 
 /*

@@ -6,6 +6,10 @@ enum action {
   register_buyer= 1;
   register_transporter= 2;
   otp_transaction= 3;
+  create_asset = 4;
+  transfer_asset = 5;
+  transporter_asset = 6;
+
 }
 
 
@@ -52,6 +56,31 @@ message Otp_transaction{
     required uint32 timestamp=3;
 }
 
+message Create_asset{
+    required string public_key = 1;
+    required uint32 weight = 2;
+    required uint32 current_owner_pincode =3;
+    required string current_owner_pubkey = 4;
+    required type type_of_food = 5;
+    optional pulses Pulses = 6;
+    optional grains Grains = 7;
+    optional fruits_long Fruits_Long = 8;
+    optional fruits_short Fruits_short= 9;
+    optional vegetable_short Vegetable_short= 10;
+    optional vegetable_long Vegetable_long=11 ;
+    optional string transporter_pubkey =12;
+    required uint64 timestamp = 13;
+    repeated string previous_asset_pubkey = 14;
+    required status Status = 15;
+}
+
+message Transfer_asset{
+  required string public_key = 1;
+  required string current_owner_pubkey =2;
+  required string current_owner_district= 3;
+  required uint64 timestamp = 4;
+}
+
 message Realpayload{
     //ACTION WILL STATE WHAT TO EXPECT IN PAYLOAD
     required action Action = 1;
@@ -60,4 +89,6 @@ message Realpayload{
     optional Register_buyer reg_buy = 3;
     optional Register_transporter reg_tra = 4;
     optional Otp_transaction otp_tra = 5;
+    optional Transfer_asset tra_ass = 6;   //you see that yolo 420
+    optional Create_asset cre_ass = 7 ;    // again !
 }

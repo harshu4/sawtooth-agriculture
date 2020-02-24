@@ -34,12 +34,12 @@ enum state  {
 }
 
 enum type{
-  vegetable_short = 1;
-  vegetable_long = 2;
-  fruits_short = 3;
-  fruits_long = 4;
-  grains = 5;
-  pulses = 6;
+  vegetable_shortt = 1;
+  vegetable_longg = 2;
+  fruits_shortt = 3;
+  fruits_longg = 4;
+  grainss = 5;
+  pulsess = 6;
 
 }
 //Short means life span == 2 days max (most hard to deal with)
@@ -57,8 +57,7 @@ enum vegetable_long {
   Onion = 1;
   Garlic = 2;
   Cabbage = 3;
-  Cauliflower = 4;
-  Beets = 5;
+  Beets = 4;
 }
 
 enum fruits_short{
@@ -89,21 +88,32 @@ enum pulses{
   Vatana = 4;
 }
 
+enum status {
+  Completed = 0;
+  OrderConfirmed = 1;
+  TransportDecided = 2;
+  Invalid = 3;
+  OrderAdded = 4;
+}
+
+
 message assets{
 
   required uint32 weight =1 ;
-  required string previous_owner_pubkey = 2;
-  required string previous_owner_district = 3;
+  optional string previous_owner_pubkey = 2;
+  optional string previous_owner_district = 3;
   required string current_owner_pubkey = 4;
   required string current_owner_district = 5;
   required type type_of_food = 6;
   optional pulses Pulses = 7;
   optional grains Grains = 8;
-  optional fruits_long = 9;
-  optional fruits_short = 10;
-  optional vegetable_short = 11;
-  optional vegetable_long =12 ;
+  optional fruits_long Fruits_long = 9;
+  optional fruits_short Fruits_short = 10;
+  optional vegetable_short Vegetable_short = 11;
+  optional vegetable_long  Vegetable_long=12 ;
   optional string transporter_pubkey =13;
   required uint64 timestamp = 14;
-  optional string previous_asset_pubkey = 15;
+  repeated string previous_asset_pubkey = 15;
+  required status Status = 16;
+  required string public_key = 17;
 }

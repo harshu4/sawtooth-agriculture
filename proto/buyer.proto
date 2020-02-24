@@ -18,6 +18,7 @@ message Buyer {
   required uint32 pincode = 6;
   required uint64 mobilenumber = 7;
   required string district = 8;
+  repeated assets assets_bought = 9;
 }
 
 /*

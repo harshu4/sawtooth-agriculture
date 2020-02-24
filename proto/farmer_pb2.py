@@ -12,7 +12,7 @@ from google.protobuf import descriptor_pb2
 
 _sym_db = _symbol_database.Default()
 
-sys.path.insert(0, "../")
+
 import enums_pb2 as enums__pb2
 
 
@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='farmer.proto',
   package='',
   syntax='proto2',
-  serialized_pb=_b('\n\x0c\x66\x61rmer.proto\x1a\x0b\x65nums.proto\"\xb6\x01\n\x06\x46\x61rmer\x12\x12\n\npublic_key\x18\x01 \x02(\t\x12\x13\n\x0b\x61\x61\x64har_card\x18\x02 \x02(\t\x12\x11\n\ttimestamp\x18\x03 \x02(\x04\x12\x11\n\tfull_name\x18\x04 \x02(\t\x12\x15\n\x05State\x18\x05 \x02(\x0e\x32\x06.state\x12\x0f\n\x07pincode\x18\x06 \x02(\r\x12\x14\n\x0cmobilenumber\x18\x07 \x02(\x04\x12\x10\n\x08\x64istrict\x18\x08 \x02(\t\x12\r\n\x05photo\x18\t \x01(\x0c')
+  serialized_pb=_b('\n\x0c\x66\x61rmer.proto\x1a\x0b\x65nums.proto\"\xd4\x01\n\x06\x46\x61rmer\x12\x12\n\npublic_key\x18\x01 \x02(\t\x12\x13\n\x0b\x61\x61\x64har_card\x18\x02 \x02(\t\x12\x11\n\ttimestamp\x18\x03 \x02(\x04\x12\x11\n\tfull_name\x18\x04 \x02(\t\x12\x15\n\x05State\x18\x05 \x02(\x0e\x32\x06.state\x12\x0f\n\x07pincode\x18\x06 \x02(\r\x12\x14\n\x0cmobilenumber\x18\x07 \x02(\x04\x12\x10\n\x08\x64istrict\x18\x08 \x02(\t\x12\r\n\x05photo\x18\t \x01(\x0c\x12\x1c\n\x0b\x61ssets_sold\x18\n \x03(\x0b\x32\x07.assets')
   ,
   dependencies=[enums__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -98,6 +98,13 @@ _FARMER = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='assets_sold', full_name='Farmer.assets_sold', index=9,
+      number=10, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -111,10 +118,11 @@ _FARMER = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=30,
-  serialized_end=212,
+  serialized_end=242,
 )
 
 _FARMER.fields_by_name['State'].enum_type = enums__pb2._STATE
+_FARMER.fields_by_name['assets_sold'].message_type = enums__pb2._ASSETS
 DESCRIPTOR.message_types_by_name['Farmer'] = _FARMER
 
 Farmer = _reflection.GeneratedProtocolMessageType('Farmer', (_message.Message,), dict(

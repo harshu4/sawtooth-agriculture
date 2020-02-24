@@ -9,6 +9,7 @@ FARMER_PREFIX = '00'
 BUYER_PREFIX = '01'
 TRANSPORTER_PREFIX = '02'
 OTP_PREFIX = '03'
+ASSET_PREFIX = '04'
 
 @enum.unique
 class AddressSpace(enum.IntEnum):
@@ -16,11 +17,12 @@ class AddressSpace(enum.IntEnum):
     BUYER = 1
     TRANSPORTER = 2
     OTP = 3
+    ASSET = 4
     OTHER_FAMILY = 100
 #   BUY_ORDER = 3
 #   SELL_ORDER = 4
 #    = 5y
-#   ASSET = 6
+#
 
 
 def get_farmer_address(public_key):
@@ -42,6 +44,12 @@ def get_otp_address(mobilenumber,otp):
     return NAMESPACE + OTP_PREFIX + str(mobilenumber)[0:10] + str(otp) + hashlib.sha512(
     str(mobilenumber).encode('UTF-8')).hexdigest()[:52-len(str(otp))]
 
+def get_asset_address(public_key):
+    "generates asset address for fun"
+    return NAMESPACE + ASSET_PREFIX + hashlib.sha512(
+    public_key.encode('utf-8')).hexdigest()[:62]
+
+
 
 def get_address_type(address):
     if address[:len(NAMESPACE)] != NAMESPACE:
@@ -57,5 +65,7 @@ def get_address_type(address):
         return AddressSpace.TRANSPORTER
     if infix == '03':
         return AddressSpace.OTP
-
+    if infix == '04':
+        return AddressSpace.ASSET
+        
     return AddressSpace.OTHER_FAMILY
