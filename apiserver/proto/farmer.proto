@@ -1,0 +1,35 @@
+//kept all protobuf different incase update is needed it will be easy gi
+
+syntax = "proto2";
+import "enums.proto";
+
+message Farmer{
+  required string public_key = 1;
+  required string aadhar_card = 2;
+  required uint64 timestamp = 3;    //will not be updated
+  required string full_name = 4;
+  required state State = 5;
+  required uint32 pincode = 6;
+  required uint64 mobilenumber = 7;
+  required string district= 8;
+  optional bytes photo = 9;      //change to required in production build
+  repeated sell_order sellOrder = 10;
+}
+
+/*
+message sell_order{
+  required string public_key = 1;
+  repeated assets assets_sold = 2;
+  required uint32 weight = 3;
+  required uint64 timestamp = 4;
+  required string farmer_pubkey = 5;
+  required type type_of_food = 6;
+  optional pulses Pulses = 7;
+  optional grains Grains = 8;
+  optional fruits_long fruitsLong = 9;
+  optional fruits_short fruitsShort = 10;
+  optional vegetable_short vegetableLong = 11;
+  optional vegetable_long  vegetableShort =12;
+  required uint32 weight_sold = 13;
+}
+*/
