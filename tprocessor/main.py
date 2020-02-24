@@ -1,11 +1,11 @@
 import argparse
 import sys
-import logging
+
 from sawtooth_sdk.processor.core import TransactionProcessor
 from sawtooth_sdk.processor.log import init_console_logging
 
 from handler import MarketTransactionHandler
-LOGGER = logging.getLogger(__name__)
+
 
 def parse_args(args):
     parser = argparse.ArgumentParser(
@@ -25,12 +25,10 @@ def parse_args(args):
 
     return parser.parse_args(args)
 
-def setup_loggers():
-    logging.basicConfig()
-    logging.getLogger().setLevel(logging.DEBUG)
+
 
 def main(args=None):
-    setup_loggers()
+
     if args is None:
         args = sys.argv[1:]
     opts = parse_args(args)
