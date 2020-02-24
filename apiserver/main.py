@@ -9,7 +9,8 @@ import json
 import string
 from sawtooth_signing import create_context
 from sawtooth_signing import CryptoFactory
-
+import argparse
+import sys
 
 
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
@@ -27,6 +28,7 @@ context = create_context('secp256k1')
 private_key = context.new_random_private_key()
 signer = CryptoFactory(context).new_signer(private_key)
 
+devmod=False
 
 
 
@@ -41,15 +43,18 @@ def helloWOrld():
 def register(mobilenum):
     try:
         otpnum=getRandom(6,chars=string.digits)
-        r=requests.get("http://2factor.in/API/V1/ab7006ba-5252-11ea-9fa5-0200cd936042/SMS/{}/{}".format(mobilenum,otpnum))
-        res=r.json()
-        res={"Status":"Success"}
+        if not devmod:
+            r=requests.get("http://2factor.in/API/V1/ab7006ba-5252-11ea-9fa5-0200cd936042/SMS/{}/{}".format(mobilenum,otpnum))
+            res=r.json()
+        else:
+            print("OTP:",otpnum)
+            res={"Status":"Success"}
         if res['Status']=="Success":
             try:
                 mobilenum=int(mobilenum)
                 otpnum=int(otpnum)
                 payloadBytes=get_OtpPayload_bytes(otpnum,mobilenum)
-                txnHeader=getTransactionHeader(signer,payloadBytes,get_otp_address(mobilenum,otpnum))
+                txnHeader=getTransactionHeader(signer,payloadBytes,[get_otp_address(mobilenum,otpnum)])
                 trans_id , txn =getTxn(signer,payloadBytes,txnHeader)
                 batchHeader=getBatchHeader(signer,[txn])
                 batch_id,batch=getBatch(signer,batchHeader,[txn])
@@ -68,6 +73,40 @@ def register(mobilenum):
         return json.dumps({"status": False, "message": "something wrong"})
 
 
+@app.route('/batches',methods=['POST'])
+@cross_origin()
+@cross_origin()
+def submit_batches():
+    try:
+        sendBatch(request.data)
+        return json.dumps({"status":"sucess","message":"Data sent to block chain..."})
+    except Exception as e:
+        print(e)
+        return json.dumps({"status":"fail","message":"Error while sending data to block chain..."})
+
+
+
+
+def parse_args(args):
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.RawTextHelpFormatter)
+
+    parser.add_argument(
+        '-d', '--devmod',
+        action='store_true',
+        help='Enable devmod')
+
+    parser.add_argument(
+        '-p', '--port',
+        default=6060,
+        help='Port number')
+
+    return parser.parse_args(args)
+
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",port=6060)
+    args = sys.argv[1:]
+    opts = parse_args(args)
+    if opts.devmod:
+        devmod=True
+    app.run(host="0.0.0.0",port=opts.port)
 
