@@ -28,7 +28,7 @@ payload.reg_far.pincode = 123456
 payload.reg_far.mobilenumber = 9999999999
 payload.reg_far.district = 'sachin'
 input = [addresser.get_farmer_address(public_key),addresser.get_otp_address(9999999999,1234)]
-
+print(public_key)
 print(input)
 payload_bytes = payload.SerializeToString()
 txn_header_bytes = TransactionHeader(

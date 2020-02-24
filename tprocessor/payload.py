@@ -35,14 +35,12 @@ class AgricultureMarketPayload(object):
             self._transaction.Action == \
                 agpayload_pb2.action.Value('otp_transaction'):
             return self._transaction.otp_tra
-        elif self_transaction.HasField('tra_ass') and \
+        elif self._transaction.HasField('tra_ass') and \
             self._transaction.Action == \
                 agpayload_pb2.action.Value('transfer_asset'):
             return self._transaction.tra_ass
-        elif self_transaction.HasField('cre_ass') and \
+        elif self._transaction.HasField('cre_ass') and \
             self._transaction.Action == \
                 agpayload_pb2.action.Value('create_asset'):
-            return agpayload_pb2.action.cre_ass
+            return self._transaction.cre_ass
         raise InvalidTransaction('Action does not match payload data')
-
-    

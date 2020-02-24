@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='enums.proto',
   package='',
   syntax='proto2',
-  serialized_pb=_b('\n\x0b\x65nums.proto\"\xfc\x03\n\x06\x61ssets\x12\x0e\n\x06weight\x18\x01 \x02(\r\x12\x1d\n\x15previous_owner_pubkey\x18\x02 \x01(\t\x12\x1f\n\x17previous_owner_district\x18\x03 \x01(\t\x12\x1c\n\x14\x63urrent_owner_pubkey\x18\x04 \x02(\t\x12\x1e\n\x16\x63urrent_owner_district\x18\x05 \x02(\t\x12\x1b\n\x0ctype_of_food\x18\x06 \x02(\x0e\x32\x05.type\x12\x17\n\x06Pulses\x18\x07 \x01(\x0e\x32\x07.pulses\x12\x17\n\x06Grains\x18\x08 \x01(\x0e\x32\x07.grains\x12!\n\x0b\x46ruits_long\x18\t \x01(\x0e\x32\x0c.fruits_long\x12#\n\x0c\x46ruits_short\x18\n \x01(\x0e\x32\r.fruits_short\x12)\n\x0fVegetable_short\x18\x0b \x01(\x0e\x32\x10.vegetable_short\x12\'\n\x0eVegetable_long\x18\x0c \x01(\x0e\x32\x0f.vegetable_long\x12\x1a\n\x12transporter_pubkey\x18\r \x01(\t\x12\x11\n\ttimestamp\x18\x0e \x02(\x04\x12\x1d\n\x15previous_asset_pubkey\x18\x0f \x03(\t\x12\x17\n\x06Status\x18\x10 \x02(\x0e\x32\x07.status\x12\x12\n\npublic_key\x18\x11 \x02(\t*\xb9\x03\n\x05state\x12\x11\n\rAndhraPradesh\x10\x00\x12\x14\n\x10\x41runachalPradesh\x10\x01\x12\t\n\x05\x41ssam\x10\x02\x12\t\n\x05\x42ihar\x10\x03\x12\x10\n\x0c\x43hhattisgarh\x10\x04\x12\x07\n\x03Goa\x10\x05\x12\x0b\n\x07Gujarat\x10\x06\x12\x0b\n\x07Haryana\x10\x07\x12\x13\n\x0fHimachalPradesh\x10\x08\x12\x13\n\x0fJammuandKashmir\x10\t\x12\r\n\tJharkhand\x10\n\x12\r\n\tKarnataka\x10\x0b\x12\n\n\x06Kerala\x10\x0c\x12\x10\n\x0cMadyaPradesh\x10\r\x12\x0f\n\x0bMaharashtra\x10\x0e\x12\x0b\n\x07Manipur\x10\x0f\x12\r\n\tMeghalaya\x10\x10\x12\x0b\n\x07Mizoram\x10\x11\x12\x0c\n\x08Nagaland\x10\x12\x12\n\n\x06Orissa\x10\x13\x12\n\n\x06Punjab\x10\x14\x12\r\n\tRajasthan\x10\x15\x12\n\n\x06Sikkim\x10\x16\x12\r\n\tTamilNadu\x10\x17\x12\x0c\n\x08Telagana\x10\x18\x12\x0b\n\x07Tripura\x10\x19\x12\x0f\n\x0bUttaranchal\x10\x1a\x12\x10\n\x0cUttarPradesh\x10\x1b\x12\x0e\n\nWestBengal\x10\x1c*p\n\x04type\x12\x14\n\x10vegetable_shortt\x10\x01\x12\x13\n\x0fvegetable_longg\x10\x02\x12\x11\n\rfruits_shortt\x10\x03\x12\x10\n\x0c\x66ruits_longg\x10\x04\x12\x0b\n\x07grainss\x10\x05\x12\x0b\n\x07pulsess\x10\x06*G\n\x0fvegetable_short\x12\n\n\x06Tomato\x10\x00\x12\n\n\x06Lemons\x10\x01\x12\x0f\n\x0b\x43\x61uliflower\x10\x02\x12\x0b\n\x07Spinach\x10\x03*K\n\x0evegetable_long\x12\n\n\x06Potato\x10\x00\x12\t\n\x05Onion\x10\x01\x12\n\n\x06Garlic\x10\x02\x12\x0b\n\x07\x43\x61\x62\x62\x61ge\x10\x03\x12\t\n\x05\x42\x65\x65ts\x10\x04*J\n\x0c\x66ruits_short\x12\x10\n\x0cStrawberries\x10\x00\x12\x0c\n\x08\x43herries\x10\x01\x12\x0b\n\x07\x42\x61nanas\x10\x02\x12\r\n\tPineapple\x10\x03*6\n\x0b\x66ruits_long\x12\n\n\x06\x41pples\x10\x00\x12\n\n\x06Orange\x10\x01\x12\x0f\n\x0bPomegranate\x10\x02*4\n\x06grains\x12\t\n\x05Wheat\x10\x00\x12\x08\n\x04Rice\x10\x01\x12\t\n\x05Maize\x10\x02\x12\n\n\x06\x42\x61rley\x10\x03*C\n\x06pulses\x12\x08\n\x04Mung\x10\x00\x12\x0e\n\nToovarDaal\x10\x01\x12\t\n\x05Rajma\x10\x02\x12\x08\n\x04Urad\x10\x03\x12\n\n\x06Vatana\x10\x04*^\n\x06status\x12\r\n\tCompleted\x10\x00\x12\x12\n\x0eOrderConfirmed\x10\x01\x12\x14\n\x10TransportDecided\x10\x02\x12\x0b\n\x07Invalid\x10\x03\x12\x0e\n\nOrderAdded\x10\x04')
+  serialized_pb=_b('\n\x0b\x65nums.proto\"\xfa\x03\n\x06\x61ssets\x12\x0e\n\x06weight\x18\x01 \x02(\r\x12\x1d\n\x15previous_owner_pubkey\x18\x02 \x01(\t\x12\x1e\n\x16previous_owner_pincode\x18\x03 \x01(\r\x12\x1c\n\x14\x63urrent_owner_pubkey\x18\x04 \x02(\t\x12\x1d\n\x15\x63urrent_owner_pincode\x18\x05 \x02(\r\x12\x1b\n\x0ctype_of_food\x18\x06 \x02(\x0e\x32\x05.type\x12\x17\n\x06Pulses\x18\x07 \x01(\x0e\x32\x07.pulses\x12\x17\n\x06Grains\x18\x08 \x01(\x0e\x32\x07.grains\x12!\n\x0b\x46ruits_long\x18\t \x01(\x0e\x32\x0c.fruits_long\x12#\n\x0c\x46ruits_short\x18\n \x01(\x0e\x32\r.fruits_short\x12)\n\x0fVegetable_short\x18\x0b \x01(\x0e\x32\x10.vegetable_short\x12\'\n\x0eVegetable_long\x18\x0c \x01(\x0e\x32\x0f.vegetable_long\x12\x1a\n\x12transporter_pubkey\x18\r \x01(\t\x12\x11\n\ttimestamp\x18\x0e \x02(\x04\x12\x1d\n\x15previous_asset_pubkey\x18\x0f \x03(\t\x12\x17\n\x06Status\x18\x10 \x02(\x0e\x32\x07.status\x12\x12\n\npublic_key\x18\x11 \x02(\t*\xb9\x03\n\x05state\x12\x11\n\rAndhraPradesh\x10\x00\x12\x14\n\x10\x41runachalPradesh\x10\x01\x12\t\n\x05\x41ssam\x10\x02\x12\t\n\x05\x42ihar\x10\x03\x12\x10\n\x0c\x43hhattisgarh\x10\x04\x12\x07\n\x03Goa\x10\x05\x12\x0b\n\x07Gujarat\x10\x06\x12\x0b\n\x07Haryana\x10\x07\x12\x13\n\x0fHimachalPradesh\x10\x08\x12\x13\n\x0fJammuandKashmir\x10\t\x12\r\n\tJharkhand\x10\n\x12\r\n\tKarnataka\x10\x0b\x12\n\n\x06Kerala\x10\x0c\x12\x10\n\x0cMadyaPradesh\x10\r\x12\x0f\n\x0bMaharashtra\x10\x0e\x12\x0b\n\x07Manipur\x10\x0f\x12\r\n\tMeghalaya\x10\x10\x12\x0b\n\x07Mizoram\x10\x11\x12\x0c\n\x08Nagaland\x10\x12\x12\n\n\x06Orissa\x10\x13\x12\n\n\x06Punjab\x10\x14\x12\r\n\tRajasthan\x10\x15\x12\n\n\x06Sikkim\x10\x16\x12\r\n\tTamilNadu\x10\x17\x12\x0c\n\x08Telagana\x10\x18\x12\x0b\n\x07Tripura\x10\x19\x12\x0f\n\x0bUttaranchal\x10\x1a\x12\x10\n\x0cUttarPradesh\x10\x1b\x12\x0e\n\nWestBengal\x10\x1c*p\n\x04type\x12\x14\n\x10vegetable_shortt\x10\x01\x12\x13\n\x0fvegetable_longg\x10\x02\x12\x11\n\rfruits_shortt\x10\x03\x12\x10\n\x0c\x66ruits_longg\x10\x04\x12\x0b\n\x07grainss\x10\x05\x12\x0b\n\x07pulsess\x10\x06*G\n\x0fvegetable_short\x12\n\n\x06Tomato\x10\x00\x12\n\n\x06Lemons\x10\x01\x12\x0f\n\x0b\x43\x61uliflower\x10\x02\x12\x0b\n\x07Spinach\x10\x03*K\n\x0evegetable_long\x12\n\n\x06Potato\x10\x00\x12\t\n\x05Onion\x10\x01\x12\n\n\x06Garlic\x10\x02\x12\x0b\n\x07\x43\x61\x62\x62\x61ge\x10\x03\x12\t\n\x05\x42\x65\x65ts\x10\x04*J\n\x0c\x66ruits_short\x12\x10\n\x0cStrawberries\x10\x00\x12\x0c\n\x08\x43herries\x10\x01\x12\x0b\n\x07\x42\x61nanas\x10\x02\x12\r\n\tPineapple\x10\x03*6\n\x0b\x66ruits_long\x12\n\n\x06\x41pples\x10\x00\x12\n\n\x06Orange\x10\x01\x12\x0f\n\x0bPomegranate\x10\x02*4\n\x06grains\x12\t\n\x05Wheat\x10\x00\x12\x08\n\x04Rice\x10\x01\x12\t\n\x05Maize\x10\x02\x12\n\n\x06\x42\x61rley\x10\x03*C\n\x06pulses\x12\x08\n\x04Mung\x10\x00\x12\x0e\n\nToovarDaal\x10\x01\x12\t\n\x05Rajma\x10\x02\x12\x08\n\x04Urad\x10\x03\x12\n\n\x06Vatana\x10\x04*^\n\x06status\x12\r\n\tCompleted\x10\x00\x12\x12\n\x0eOrderConfirmed\x10\x01\x12\x14\n\x10TransportDecided\x10\x02\x12\x0b\n\x07Invalid\x10\x03\x12\x0e\n\nOrderAdded\x10\x04')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -149,8 +149,8 @@ _STATE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=527,
-  serialized_end=968,
+  serialized_start=525,
+  serialized_end=966,
 )
 _sym_db.RegisterEnumDescriptor(_STATE)
 
@@ -188,8 +188,8 @@ _TYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=970,
-  serialized_end=1082,
+  serialized_start=968,
+  serialized_end=1080,
 )
 _sym_db.RegisterEnumDescriptor(_TYPE)
 
@@ -219,8 +219,8 @@ _VEGETABLE_SHORT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1084,
-  serialized_end=1155,
+  serialized_start=1082,
+  serialized_end=1153,
 )
 _sym_db.RegisterEnumDescriptor(_VEGETABLE_SHORT)
 
@@ -254,8 +254,8 @@ _VEGETABLE_LONG = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1157,
-  serialized_end=1232,
+  serialized_start=1155,
+  serialized_end=1230,
 )
 _sym_db.RegisterEnumDescriptor(_VEGETABLE_LONG)
 
@@ -285,8 +285,8 @@ _FRUITS_SHORT = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1234,
-  serialized_end=1308,
+  serialized_start=1232,
+  serialized_end=1306,
 )
 _sym_db.RegisterEnumDescriptor(_FRUITS_SHORT)
 
@@ -312,8 +312,8 @@ _FRUITS_LONG = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1310,
-  serialized_end=1364,
+  serialized_start=1308,
+  serialized_end=1362,
 )
 _sym_db.RegisterEnumDescriptor(_FRUITS_LONG)
 
@@ -343,8 +343,8 @@ _GRAINS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1366,
-  serialized_end=1418,
+  serialized_start=1364,
+  serialized_end=1416,
 )
 _sym_db.RegisterEnumDescriptor(_GRAINS)
 
@@ -378,8 +378,8 @@ _PULSES = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1420,
-  serialized_end=1487,
+  serialized_start=1418,
+  serialized_end=1485,
 )
 _sym_db.RegisterEnumDescriptor(_PULSES)
 
@@ -413,8 +413,8 @@ _STATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1489,
-  serialized_end=1583,
+  serialized_start=1487,
+  serialized_end=1581,
 )
 _sym_db.RegisterEnumDescriptor(_STATUS)
 
@@ -509,9 +509,9 @@ _ASSETS = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='previous_owner_district', full_name='assets.previous_owner_district', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      name='previous_owner_pincode', full_name='assets.previous_owner_pincode', index=2,
+      number=3, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -523,9 +523,9 @@ _ASSETS = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='current_owner_district', full_name='assets.current_owner_district', index=4,
-      number=5, type=9, cpp_type=9, label=2,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      name='current_owner_pincode', full_name='assets.current_owner_pincode', index=4,
+      number=5, type=13, cpp_type=3, label=2,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -626,7 +626,7 @@ _ASSETS = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=16,
-  serialized_end=524,
+  serialized_end=522,
 )
 
 _ASSETS.fields_by_name['type_of_food'].enum_type = _TYPE
