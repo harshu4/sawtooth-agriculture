@@ -7,31 +7,37 @@ from sawtooth_sdk.protobuf.transaction_pb2 import TransactionHeader
 from sawtooth_sdk.protobuf.transaction_pb2 import Transaction
 from sawtooth_sdk.protobuf.batch_pb2 import BatchHeader,Batch,BatchList
 from sawtooth_signing import create_context
+from sawtooth_signing.secp256k1 import Secp256k1PrivateKey
 from sawtooth_signing import CryptoFactory
 import urllib.request
 from urllib.error import HTTPError
 import addresser
 
+PRIVATE_KEY = '347bd546500cdc8c41cf577406c4d3ed84d7bf7a4550848373b6aaf6ae5a14b2'
+PUBLIC_KEY = '03bf808bdfe9cd5bf861d8b79b6eea8acbc65c4a5bb080f2ec4081cad34ed1f705'
+
+PRIVATE_KEY_ASSET = 'b5086b76968a86b137b26490295075c3cb4bd039daee6ac052d0b05db57849fb'
+PUBLIC_KEY_ASSET = '03b5d33a56bb507b7948e9972ab80bb58ec8cb1981d5eb70b8aba06139e1566668'
 
 context = create_context('secp256k1')
-private_key = context.new_random_private_key()
+private_key = Secp256k1PrivateKey.from_hex(PRIVATE_KEY)
+private_key_asset = Secp256k1PrivateKey.from_hex(PRIVATE_KEY_ASSET)
 signer = CryptoFactory(context).new_signer(private_key)
-private_key_asset = context.new_random_private_key()
 signer_asset = CryptoFactory(context).new_signer(private_key_asset)
-public_key_asset = signer_asset.get_public_key().as_hex()
-public_key = signer.get_public_key().as_hex()
+public_key_asset = PUBLIC_KEY_ASSET
+public_key = PUBLIC_KEY
 print(f"public key of famer {public_key} and public key of asset {public_key_asset}")
 payload = agpayload_pb2.Realpayload()
 payload.Action = agpayload_pb2.action.Value('create_asset')
 payload.cre_ass.public_key = public_key_asset
 payload.cre_ass.weight = 5
-payload.cre_ass.current_owner_pubkey  = '03b36c150df64c40c42c11f9f45b0be5aa406df7404696e0d9ca947fc227a43bf1'
+payload.cre_ass.current_owner_pubkey  = public_key
 payload.cre_ass.current_owner_pincode = 394230
 payload.cre_ass.type_of_food = enums_pb2.type.Value('vegetable_shortt')
 payload.cre_ass.Vegetable_short = enums_pb2.vegetable_short.Value('Tomato')
 payload.cre_ass.timestamp = 00000
 payload.cre_ass.Status = enums_pb2.status.Value('OrderAdded')
-input = ['add8ab009179875ea87b8760c805a1bc0c8cfc4d9b36a0acc08defd2452894a8833b58',addresser.get_asset_address(public_key_asset)]
+input = [addresser.get_farmer_address(PUBLIC_KEY),addresser.get_asset_address(PUBLIC_KEY_ASSET)]
 print(input)
 
 payload_bytes = payload.SerializeToString()

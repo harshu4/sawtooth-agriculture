@@ -100,8 +100,8 @@ enum status {
 message assets{
 
   required uint32 weight =1 ;
-  optional string previous_owner_pubkey = 2;
-  optional uint32 previous_owner_pincode = 3;
+  repeated string previous_owner_pubkey = 2;
+  repeated uint32 previous_owner_pincode = 3;
   required string current_owner_pubkey = 4;
   required uint32 current_owner_pincode = 5;
   required type type_of_food = 6;

@@ -181,8 +181,38 @@ class AgricultureMarketState(object):
         if state_entries:
             return farmer.ParseFromString(state_entries[0].data)
 
-
-
+    def transfer_asset(self,public_key,data,timeout=000):
+        """Transfers assets use farmers key to sign"""
+        address = addresser.get_asset_address(data.public_key)
+        address_farmer = addresser.get_farmer_address(public_key)
+        address_buyer = addresser.get_buyer_address(data.current_owner_pubkey)
+        farmer =  farmer_pb2.Farmer()
+        asset = enums_pb2.assets()
+        buyer = buyer_pb2.Buyer()
+        state_entries = self._context.get_state(
+            addresses=[address], timeout=self._timeout)
+        state_entries_farm = self._context.get_state(
+            addresses=[address_farmer] ,timeout=self._timeout)
+        state_entries_buy = self._context.get_state(
+            addresses=[address_buyer] , timeout = self._timeout)
+        if not state_entries or not state_entries_farm or not state_entries_buy:
+            raise InvalidTransaction("No No that is so wrong !")
+        farmer.ParseFromString(state_entries_farm[0].data)
+        asset.ParseFromString(state_entries[0].data)
+        buyer.ParseFromString(state_entries[0].data)
+        i = 0
+        index = None
+        while i < len(farmer.assets_sold):
+            if farmer.assets_sold[i].public_key == data.public_key:
+                index = i
+        if not index:
+            raise InvalidTransaction("No You don't have the asset")
+        asset.previous_owner_pubkey.extend(asset.current_owner_pubkey)
+        asset.previous_owner_pincode.extend(asset.current_owner_pincode)
+        asset.current_owner_pubkey = data.current_owner_pubkey
+        asset.current_owner_pincode = data.current_owner_pincode
+        buyer.assets_bought.extend(asset)
+        del farmer.assets_sold[index]
 def typee(data):
 
     if data.HasField('Pulses') and \

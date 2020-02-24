@@ -11,10 +11,12 @@ from sawtooth_signing import CryptoFactory
 import urllib.request
 from urllib.error import HTTPError
 import addresser
+from sawtooth_signing.secp256k1 import Secp256k1PrivateKey
 
-
+PRIVATE_KEY = '347bd546500cdc8c41cf577406c4d3ed84d7bf7a4550848373b6aaf6ae5a14b2'
+PUBLIC_KEY = '03bf808bdfe9cd5bf861d8b79b6eea8acbc65c4a5bb080f2ec4081cad34ed1f705'
 context = create_context('secp256k1')
-private_key = context.new_random_private_key()
+private_key = Secp256k1PrivateKey.from_hex(PRIVATE_KEY)
 signer = CryptoFactory(context).new_signer(private_key)
 public_key = signer.get_public_key().as_hex()
 payload = agpayload_pb2.Realpayload()

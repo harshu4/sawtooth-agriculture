@@ -61,6 +61,11 @@ class MarketTransactionHandler(TransactionHandler):
                 state= state,
                 public_key = header.signer_public_key,
                 payload = payload)
+        elif payload.action ==  agpayload_pb2.action.Value('transfer_asset'):
+            _transfer_asset(
+                state= state,
+                public_key = header.signer_public_key,
+                payload = payload)
         else:
             raise InvalidTransaction("Shut up your mouth!,and read your code")
 
@@ -96,6 +101,13 @@ def _create_asset(state,public_key,payload):
         public_key = public_key,
         data = payload.data
 
+    )
+
+
+def _transfer_asset(state,public_key,payload):
+    state.transfer_asset(
+        public_key = public_key,
+        data = payload.data
     )
 
 

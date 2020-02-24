@@ -77,8 +77,8 @@ message Create_asset{
 message Transfer_asset{
   required string public_key = 1;
   required string current_owner_pubkey =2;
-  required string current_owner_district= 3;
-  required uint64 timestamp = 4;
+  required uint32 current_owner_pincode =3;
+  required uint64 timestamp =4;
 }
 
 message Realpayload{
