@@ -41,8 +41,7 @@ def get_transporter_address(public_key):
 def get_otp_address(mobilenumber,otp):
     """smart enough to handle mobile number with +91 and otp of random length"""
     #ask obd otp size and remind him to keep mobile number to 10 digit
-    return NAMESPACE + OTP_PREFIX + str(mobilenumber)[0:10] + str(otp) + hashlib.sha512(
-    str(mobilenumber).encode('UTF-8')).hexdigest()[:52-(len(str(otp))+len(str(mobilenumber)))]
+    return NAMESPACE + OTP_PREFIX + str(mobilenumber)[0:10] + str(otp) + hashlib.sha512(str(mobilenumber).encode('UTF-8')).hexdigest()[:62-(len(str(otp))+len(str(mobilenumber)))]
 
 def get_asset_address(public_key):
     "generates asset address for fun"
