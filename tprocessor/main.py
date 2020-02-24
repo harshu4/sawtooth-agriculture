@@ -3,7 +3,6 @@ import sys
 
 from sawtooth_sdk.processor.core import TransactionProcessor
 from sawtooth_sdk.processor.log import init_console_logging
-
 from handler import MarketTransactionHandler
 
 
