@@ -9,7 +9,7 @@ enum action {
   create_asset = 4;
   transfer_asset = 5;
   transporter_asset = 6;
-
+  split_asset = 7;
 }
 
 
@@ -80,7 +80,14 @@ message Transfer_asset{
   required uint32 current_owner_pincode =3;
   required uint64 timestamp =4;
 }
-
+//will be called by farmer or by server
+message Split_asset{
+  required string public_key = 1;
+  required uint32 weight = 2;
+  required string public_key1 = 3;
+  required string public_key2 = 4;
+  required string public_key_farmer = 5;
+}
 message Realpayload{
     //ACTION WILL STATE WHAT TO EXPECT IN PAYLOAD
     required action Action = 1;
@@ -91,4 +98,5 @@ message Realpayload{
     optional Otp_transaction otp_tra = 5;
     optional Transfer_asset tra_ass = 6;   //you see that yolo 420
     optional Create_asset cre_ass = 7 ;    // again !
+    optional Split_asset spl_ass = 8;       // stop it dude !
 }

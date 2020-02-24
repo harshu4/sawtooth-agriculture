@@ -47,5 +47,10 @@ class AgricultureMarketPayload(object):
             self._transaction.Action == \
                 agpayload_pb2.action.Value('transfer_asset'):
             return self._transaction.tra_ass
+        elif self._transaction.HasField('spl_ass') and \
+            self._transaction.Action == \
+                agpayload_pb2.action.Value('split_asset'):
+            return self._transaction.spl_ass
+
 
         raise InvalidTransaction('Action does not match payload data')

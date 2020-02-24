@@ -195,12 +195,9 @@ class AgricultureMarketState(object):
             addresses=[address_farmer] ,timeout=self._timeout)
         state_entries_buy = self._context.get_state(
             addresses=[address_buyer] , timeout = self._timeout)
-        if not state_entries:
+        if not state_entries or not state_entries_buy or not state_entries_farm:
             raise InvalidTransaction("No No that is so wrong !  1")
-        if not state_entries_buy:
-            raise InvalidTransaction("No No that is so wrong !  2")
-        if not state_entries_farm:
-            raise InvalidTransaction("No No that is so wrong ! 3")
+
         farmer.ParseFromString(state_entries_farm[0].data)
         asset.ParseFromString(state_entries[0].data)
         buyer.ParseFromString(state_entries_buy[0].data)
@@ -215,11 +212,8 @@ class AgricultureMarketState(object):
         if not index:
             raise InvalidTransaction("No You don't have the asset")
         index = index-1
-        print("1")
         asset.previous_owner_pubkey.extend([asset.current_owner_pubkey])
-        print("2")
         asset.previous_owner_pincode.extend([asset.current_owner_pincode])
-        print("3")
         asset.current_owner_pubkey = data.current_owner_pubkey
         asset.current_owner_pincode = data.current_owner_pincode
         buyer.assets_bought.extend([asset])
@@ -234,9 +228,66 @@ class AgricultureMarketState(object):
         updated_state_buy = {}
         updated_state_buy[address_buyer] = data_buyer
         self._context.set_state(updated_state, timeout=self._timeout)
-        print('hello')
         self._context.set_state(updated_state_farm, timeout=self._timeout)
         self._context.set_state(updated_state_buy, timeout=self._timeout)
+
+
+
+    def split_asset(self,public_key,data,timeout=000):
+        address = addresser.get_asset_address(data.public_key)
+        address_sub1 = addresser.get_asset_address(data.public_key1)
+        address_sub2 = addreser.get_asset_address(data.public_key2)
+        address_farmer = addresser.get_asset_address(data.public_key_farmer)
+        farmer = farmer_pb2.Farmer()
+        asset  = enums_pb2.asset()
+        asset1 = enums_pb2.asset()
+        asset2 = enums_pb2.asset()
+        state_entries = self._context.get_state(
+            addresses=[address], timeout=self._timeout)
+        state_entries_sub1 = self._context.get_state(
+            addresses=[address_farmer] ,timeout=self._timeout)
+        state_entries_sub2 = self._context.get_state(
+            addresses=[address_buyer] , timeout = self._timeout)
+        state_entries_farmer = self._context.get_state(
+            addresses=[address_buyer] , timeout = self._timeout)
+        if not state_entries or not state_entries_farmer:
+            raise InvalidTransaction("No Farmer or No Asset")
+        if state_entries_sub1 or state_entries_sub2:
+            raise InvalidTransaction("Choose different pubkey for subaddresses")
+        farmer.ParseFromString(state_entries_farmer[0].data)
+        i = 0
+        index = None
+        while i < len(farmer.assets_sold):
+            if farmer.assets_sold[i].public_key == data.public_key:
+
+                index = i+1
+            i +=1
+        if not index:
+            raise InvalidTransaction("No You don't have the asset")
+        index = index-1
+        asset1 = farmer.assets_sold[index]
+        asset2 = farmer.assets_sold[index]
+        if farmer.assets_sold[index].weight < data.weight:
+            raise InvalidTransaction("The weight of split is bigger than main")
+        asset1.weight = data.weight
+        asset2.weight = asset2.weight - data.weight
+        asset1.previous_asset_pubkey = data.pubkey
+        asset2.previous_asset_pubkey = data.pubkey
+        del farmer.assets_sold[index]
+        data_farm = farmer.SerializeToString()
+        data1 = asset1.SerializeToString()
+        data2 = asset2.SerializeToString()
+        updated_state_farm = {}
+        updated_state_farm[address_farmer] = data_farm
+        updated_state1 = {}
+        updated_state[address_sub1] = data1
+        updated_state2 = {}
+        updated_state_buy[address_sub2] = data2
+        self._context.set_state(updated_state1, timeout=self._timeout)
+        self._context.set_state(updated_state_farm, timeout=self._timeout)
+        self._context.set_state(updated_state2, timeout=self._timeout)
+
+
 def typee(data):
 
     if data.HasField('Pulses') and \
