@@ -119,7 +119,8 @@ def _transfer_asset(state,public_key,payload):
     )
 
 def _split_asset(state,public_key,payload):
-    state.transfer_asset(
+    print('here')
+    state.split_asset(
         public_key = public_key,
         data = payload.data
     )

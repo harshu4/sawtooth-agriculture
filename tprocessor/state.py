@@ -234,22 +234,23 @@ class AgricultureMarketState(object):
 
 
     def split_asset(self,public_key,data,timeout=000):
+
         address = addresser.get_asset_address(data.public_key)
         address_sub1 = addresser.get_asset_address(data.public_key1)
-        address_sub2 = addreser.get_asset_address(data.public_key2)
-        address_farmer = addresser.get_asset_address(data.public_key_farmer)
+        address_sub2 = addresser.get_asset_address(data.public_key2)
+        address_farmer = addresser.get_farmer_address(data.public_key_farmer)
         farmer = farmer_pb2.Farmer()
-        asset  = enums_pb2.asset()
-        asset1 = enums_pb2.asset()
-        asset2 = enums_pb2.asset()
+        asset  = enums_pb2.assets()
+        asset1 = enums_pb2.assets()
+        asset2 = enums_pb2.assets()
         state_entries = self._context.get_state(
             addresses=[address], timeout=self._timeout)
         state_entries_sub1 = self._context.get_state(
-            addresses=[address_farmer] ,timeout=self._timeout)
+            addresses=[address_sub1] ,timeout=self._timeout)
         state_entries_sub2 = self._context.get_state(
-            addresses=[address_buyer] , timeout = self._timeout)
+            addresses=[address_sub2] , timeout = self._timeout)
         state_entries_farmer = self._context.get_state(
-            addresses=[address_buyer] , timeout = self._timeout)
+            addresses=[address_farmer] , timeout = self._timeout)
         if not state_entries or not state_entries_farmer:
             raise InvalidTransaction("No Farmer or No Asset")
         if state_entries_sub1 or state_entries_sub2:
@@ -271,20 +272,20 @@ class AgricultureMarketState(object):
             raise InvalidTransaction("The weight of split is bigger than main")
         asset1.weight = data.weight
         asset2.weight = asset2.weight - data.weight
-        asset1.previous_asset_pubkey = data.pubkey
-        asset2.previous_asset_pubkey = data.pubkey
+        asset1.previous_asset_pubkey.extend(data.public_key)
+        asset2.previous_asset_pubkey.extend(data.public_key)
         del farmer.assets_sold[index]
         data_farm = farmer.SerializeToString()
         data1 = asset1.SerializeToString()
         data2 = asset2.SerializeToString()
-        updated_state_farm = {}
-        updated_state_farm[address_farmer] = data_farm
+        updated_state = {}
+        updated_state[address_farmer] = data_farm
         updated_state1 = {}
         updated_state[address_sub1] = data1
         updated_state2 = {}
-        updated_state_buy[address_sub2] = data2
+        updated_state2[address_sub2] = data2
         self._context.set_state(updated_state1, timeout=self._timeout)
-        self._context.set_state(updated_state_farm, timeout=self._timeout)
+        self._context.set_state(updated_state, timeout=self._timeout)
         self._context.set_state(updated_state2, timeout=self._timeout)
 
 
