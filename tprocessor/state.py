@@ -272,8 +272,8 @@ class AgricultureMarketState(object):
             raise InvalidTransaction("The weight of split is bigger than main")
         asset1.weight = data.weight
         asset2.weight = asset2.weight - data.weight
-        asset1.previous_asset_pubkey.extend(data.public_key)
-        asset2.previous_asset_pubkey.extend(data.public_key)
+        asset1.previous_asset_pubkey.extend([data.public_key])
+        asset2.previous_asset_pubkey.extend([data.public_key])
         del farmer.assets_sold[index]
         data_farm = farmer.SerializeToString()
         data1 = asset1.SerializeToString()
