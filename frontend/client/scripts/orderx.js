@@ -1,12 +1,13 @@
 const request = require('request')
 const $ = require('jquery');
 const sawtooth = require('./sawtooth')
-
+var timers = require('timers');
+var setTimeout = timers.setTimeout
 $(document).ready(function () {
     let signer;
     let nounce;
     if (!window.localStorage.privateKey) {
-        window.location.replace = "register.html"
+        window.location.href = "register.html";
     } else {
         signer = sawtooth.privateKeyFromHex(window.localStorage.privateKey);
     }
@@ -91,9 +92,15 @@ $(document).ready(function () {
         }, (err, response) => {
             if (err) return console.log(err)
             console.log(response.body)
+	    $('#selloo').hide();
+	    $('#sellooi').append('<img src="payment-.gif" alt="Cinque Terre" width=100% height="400px">');
+		  setTimeout(function(){ console.log('hello'); window.location.replace = 'searchOrder.html'; }, 3000);
+
+
         })
 
     });
+
     $("#buyo").click(function () {
 
         let assetType = $("#assettype").val();

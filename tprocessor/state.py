@@ -380,10 +380,10 @@ def typee(data):
         data.type_of_food == \
             enums_pb2.type.Value('vegetable_longg'):
         return [data.Vegetable_long,3]
-    elif data.HasField('Fruits_long') and \
+    elif data.HasField('Fruits_Long') and \
         data.type_of_food == \
             enums_pb2.type.Value('fruits_longg'):
-        return [data.Fruits_long,4]
+        return [data.Fruits_Long,4]
     elif data.HasField('Fruits_short') and \
         data.type_of_food == \
             enums_pb2.type.Value('fruits_shortt'):

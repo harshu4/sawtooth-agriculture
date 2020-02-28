@@ -7698,8 +7698,8 @@ function _setExports(ndebug) {
 
 module.exports = _setExports(process.env.NODE_NDEBUG);
 
-}).call(this,{"isBuffer":require("../../../../../../../../../usr/lib/node_modules/browserify/node_modules/is-buffer/index.js")},require('_process'))
-},{"../../../../../../../../../usr/lib/node_modules/browserify/node_modules/is-buffer/index.js":382,"_process":412,"assert":289,"stream":450,"util":477}],61:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")},require('_process'))
+},{"../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":382,"_process":412,"assert":289,"stream":450,"util":477}],61:[function(require,module,exports){
 
 /*!
  *  Copyright 2010 LearnBoost <dev@learnboost.com>
@@ -12910,8 +12910,8 @@ CombinedStream.prototype._emitError = function(err) {
   this.emit('error', err);
 };
 
-}).call(this,{"isBuffer":require("../../../../../../../../../../usr/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../../../../usr/lib/node_modules/browserify/node_modules/is-buffer/index.js":382,"delayed-stream":73,"stream":450,"util":477}],71:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
+},{"../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":382,"delayed-stream":73,"stream":450,"util":477}],71:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -13021,8 +13021,8 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 
-}).call(this,{"isBuffer":require("../../../../../../../../../../usr/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../../../../usr/lib/node_modules/browserify/node_modules/is-buffer/index.js":382}],72:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
+},{"../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":382}],72:[function(require,module,exports){
 'use strict'
 var inherits = require('inherits')
 var MD5 = require('md5.js')
@@ -21408,8 +21408,8 @@ module.exports = {
 
 };
 
-}).call(this,{"isBuffer":require("../../../../../../../../../../usr/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../../../../usr/lib/node_modules/browserify/node_modules/is-buffer/index.js":382,"./utils":137,"assert-plus":60,"crypto":336,"http":451,"jsprim":147,"sshpk":252,"util":477}],137:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
+},{"../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":382,"./utils":137,"assert-plus":60,"crypto":336,"http":451,"jsprim":147,"sshpk":252,"util":477}],137:[function(require,module,exports){
 // Copyright 2012 Joyent, Inc.  All rights reserved.
 
 var assert = require('assert-plus');
@@ -66514,8 +66514,8 @@ exports.isNumberInInterval = function (number, x, y, message) {
   if (number <= x || number >= y) throw RangeError(message)
 }
 
-}).call(this,{"isBuffer":require("../../../../../../../../../../usr/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../../../../usr/lib/node_modules/browserify/node_modules/is-buffer/index.js":382}],221:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
+},{"../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":382}],221:[function(require,module,exports){
 'use strict'
 var Buffer = require('safe-buffer').Buffer
 var bip66 = require('bip66')
@@ -73731,8 +73731,8 @@ Key._oldVersionDetect = function (obj) {
 	return ([1, 0]);
 };
 
-}).call(this,{"isBuffer":require("../../../../../../../../../../usr/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../../../../../usr/lib/node_modules/browserify/node_modules/is-buffer/index.js":382,"./algs":233,"./dhe":235,"./ed-compat":236,"./errors":237,"./fingerprint":238,"./formats/auto":239,"./formats/dnssec":240,"./formats/pem":242,"./formats/pkcs1":243,"./formats/pkcs8":244,"./formats/putty":245,"./formats/rfc4253":246,"./formats/ssh":248,"./formats/ssh-private":247,"./private-key":254,"./signature":255,"./utils":257,"assert-plus":60,"crypto":336}],254:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
+},{"../../../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":382,"./algs":233,"./dhe":235,"./ed-compat":236,"./errors":237,"./fingerprint":238,"./formats/auto":239,"./formats/dnssec":240,"./formats/pem":242,"./formats/pkcs1":243,"./formats/pkcs8":244,"./formats/putty":245,"./formats/rfc4253":246,"./formats/ssh":248,"./formats/ssh-private":247,"./private-key":254,"./signature":255,"./utils":257,"assert-plus":60,"crypto":336}],254:[function(require,module,exports){
 // Copyright 2017 Joyent, Inc.
 
 module.exports = PrivateKey;
@@ -81343,12 +81343,13 @@ WError.prototype.cause = function we_cause(c)
 const request = require('request')
 const $ = require('jquery');
 const sawtooth = require('./sawtooth')
-
+var timers = require('timers');
+var setTimeout = timers.setTimeout
 $(document).ready(function () {
     let signer;
     let nounce;
     if (!window.localStorage.privateKey) {
-        window.location.replace = "register.html"
+        window.location.href = "register.html";
     } else {
         signer = sawtooth.privateKeyFromHex(window.localStorage.privateKey);
     }
@@ -81433,9 +81434,15 @@ $(document).ready(function () {
         }, (err, response) => {
             if (err) return console.log(err)
             console.log(response.body)
+	    $('#selloo').hide();
+	    $('#sellooi').append('<img src="payment-.gif" alt="Cinque Terre" width=100% height="400px">');
+		   setTimeout(function(){ console.log('hello'); window.location.replace = 'searchOrder.html'; }, 3000);
+
+
         })
 
     });
+
     $("#buyo").click(function () {
 
         let assetType = $("#assettype").val();
@@ -81475,7 +81482,8 @@ function makeHttprequest(data) {
 
 makeHttprequest(JSON.stringify({ "lol": "dol" }))
 */
-},{"./sawtooth":273,"jquery":142,"request":197}],273:[function(require,module,exports){
+
+},{"./sawtooth":273,"jquery":142,"request":197,"timers":471}],273:[function(require,module,exports){
 const { createContext, CryptoFactory } = require('sawtooth-sdk/signing')
 const { Secp256k1PrivateKey } = require('sawtooth-sdk/signing/secp256k1')
 const context = createContext('secp256k1')
@@ -81497,7 +81505,7 @@ const Base64 = { _keyStr: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0
 function makePrivetKey() {
     let privateKey = context.newRandomPrivateKey()
     let signer = new CryptoFactory(context).newSigner(privateKey)
-    //window.localStorage.setItem("privateKey", privateKey.asHex())
+    window.localStorage.setItem("privateKey", privateKey.asHex())
     return signer
 }
 
@@ -90903,21 +90911,36 @@ arguments[4][90][0].apply(exports,arguments)
 arguments[4][91][0].apply(exports,arguments)
 },{"bn.js":294,"dup":91,"minimalistic-assert":386,"minimalistic-crypto-utils":387}],362:[function(require,module,exports){
 module.exports={
-  "_from": "elliptic@^6.0.0",
+  "_args": [
+    [
+      "elliptic@^6.0.0",
+      "/usr/local/lib/node_modules/browserify/node_modules/browserify-sign"
+    ]
+  ],
+  "_from": "elliptic@>=6.0.0 <7.0.0",
+  "_hasShrinkwrap": false,
   "_id": "elliptic@6.5.2",
-  "_inBundle": false,
-  "_integrity": "sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==",
+  "_inCache": true,
+  "_installable": true,
   "_location": "/browserify/elliptic",
+  "_nodeVersion": "12.11.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/elliptic_6.5.2_1574449632470_0.8146993695516966"
+  },
+  "_npmUser": {
+    "email": "fedor@indutny.com",
+    "name": "indutny"
+  },
+  "_npmVersion": "6.12.1",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
-    "registry": true,
-    "raw": "elliptic@^6.0.0",
     "name": "elliptic",
-    "escapedName": "elliptic",
+    "raw": "elliptic@^6.0.0",
     "rawSpec": "^6.0.0",
-    "saveSpec": null,
-    "fetchSpec": "^6.0.0"
+    "scope": null,
+    "spec": ">=6.0.0 <7.0.0",
+    "type": "range"
   },
   "_requiredBy": [
     "/browserify/browserify-sign",
@@ -90925,16 +90948,16 @@ module.exports={
   ],
   "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz",
   "_shasum": "05c5678d7173c049d8ca433552224a495d0e3762",
+  "_shrinkwrap": null,
   "_spec": "elliptic@^6.0.0",
-  "_where": "/usr/lib/node_modules/browserify/node_modules/browserify-sign",
+  "_where": "/usr/local/lib/node_modules/browserify/node_modules/browserify-sign",
   "author": {
-    "name": "Fedor Indutny",
-    "email": "fedor@indutny.com"
+    "email": "fedor@indutny.com",
+    "name": "Fedor Indutny"
   },
   "bugs": {
     "url": "https://github.com/indutny/elliptic/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "bn.js": "^4.4.0",
     "brorand": "^1.0.1",
@@ -90944,7 +90967,6 @@ module.exports={
     "minimalistic-assert": "^1.0.0",
     "minimalistic-crypto-utils": "^1.0.0"
   },
-  "deprecated": false,
   "description": "EC cryptography",
   "devDependencies": {
     "brfs": "^1.4.3",
@@ -90962,19 +90984,34 @@ module.exports={
     "jshint": "^2.10.3",
     "mocha": "^6.2.2"
   },
-  "files": [
-    "lib"
-  ],
+  "directories": {},
+  "dist": {
+    "fileCount": 17,
+    "integrity": "sha512-f4x70okzZbIQl/NSRLkI/+tteV/9WqL98zx+SQ69KbXxmVrmjwsNUPn/gYJJ0sHvEak24cZgHIPegRePAtA/xw==",
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJd2DHgCRA9TVsSAnZWagAAfx0P/RYZUDcD1KNqpERJSTgL\nlA3wXXXVB78IVwSy9laMD1GdDpsMy71PHjFMZL1NM2ZaZUUi7eiNaYf8sFrP\nQWadLsl3M2tkW6T4AkgxJXMEmbf3k9hCy+ZvRdWKJUF0g44WORvK2SNzDI/C\nIuBZ9xfTS5dZ3jZJOMZNZO4+PHzMQ/pzCGXafuuzsryPlcx0PvIN66xTRQbo\n/ByAl3lIK/C5HsFUkaSxcabcSmZrVuwDw8ciKGrBXjWkXAqLzO0u9HEczucP\n+RNNFvocrTB4ge/4yV4cdGSF7QXkzJ7hPqQgnhj0TrJO//qBERKXffQq91Hr\nU/xdUsX/dnIqpzpV81E36L+0VIxxg66/21ba4qlsho0i57v83Y6jLH3wFud4\n/LGzynTDiwySpREE9Gb3tnXSR3OuZstyJORQwEglAQIp7QcneqGOghNgY4am\nuFkM/6rAJi4tGw8uBn0tgRQZHtmy8XwNtuN/ShRoBzBayN2XVmJrApUxPpJK\nu+v3O0skLnpsXqgCpskrRK4dWtgkItxSZn91DZ219eGZvpFOgS8Jnb/bA07B\nZ7mGgM0B91Bc4ZbUGyGyv17j/p5fItlA0nqX6itwNjBI+BeYlenWXG3JfEjd\npteBvQyvxCHtcnc987HIm6VYGFvj1xlI7eLD4fQXPbuos0jbyEo2ndIU8jIT\nJVlS\r\n=BoXv\r\n-----END PGP SIGNATURE-----\r\n",
+    "shasum": "05c5678d7173c049d8ca433552224a495d0e3762",
+    "tarball": "https://registry.npmjs.org/elliptic/-/elliptic-6.5.2.tgz",
+    "unpackedSize": 118072
+  },
+  "gitHead": "60489415e545efdfd3010ae74b9726facbf08ca8",
   "homepage": "https://github.com/indutny/elliptic",
   "keywords": [
+    "Cryptography",
     "EC",
     "Elliptic",
-    "curve",
-    "Cryptography"
+    "curve"
   ],
   "license": "MIT",
   "main": "lib/elliptic.js",
+  "maintainers": [
+    {
+      "name": "indutny",
+      "email": "fedor@indutny.com"
+    }
+  ],
   "name": "elliptic",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/indutny/elliptic.git"

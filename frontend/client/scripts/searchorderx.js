@@ -85,7 +85,7 @@ $(document).ready(function () {
 
             for (let d in data['data']) {
 
-                let g = "<div>Asset Type: " + data['data'][d].assetType + "<br>Asset Value:" + data['data'][d].assetValue + "<br>Price: " + data['data'][d].price + "<br>Pincode: " + data['data'][d].pincode + "<br><br><button id=" + data['data'][d].nounce + ">" + ordertype + "</button></div>";
+                let g = "<div \" width: 225px; padding: 25px;  box-sizing: border-box;\">Asset Type: " + data['data'][d].assetType + "<br>Asset Value:" + data['data'][d].assetValue + "<br>Price: " + data['data'][d].price + "<br>Pincode: " + data['data'][d].pincode + "<br><br><button id=" + data['data'][d].nounce + ">" + ordertype + "</button></div>";
                 console.log(g)
                 $("#rl").append(g);
             }

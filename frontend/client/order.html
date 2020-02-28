@@ -1,0 +1,42 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="style.css">
+    <title>
+        Buy/Sell Order
+    </title>
+    <script src="scripts/order.js"></script>
+</head>
+
+<body>
+  <div class="header">
+    <a href="#default" class="logo">Agriculture Supply Chain</a>
+    <div class="header-right">
+      <a  href="index.html">Home</a>
+      <a href="register.html">Register</a>
+      <a class="active" href="order.html">Order</a>
+      <a href="searchOrder.html">Search Order</a>
+    </div>
+
+  </div>
+  <div id="sellooi">
+      <div class="form" id='selloo'>
+    <h1>Place Order </h1>
+
+    <input type="radio"  id="buy" name="order" value="buy" checked>
+    <label for="buy">Buy Order</label>&nbsp;&nbsp;
+    <input type="radio" id="sell" name="order" value="sell">
+    <label for="sell">Sell Order</label><br><br>
+    <select id="assettype" style="border: 2px solid green;" style="display: none;">
+    </select>&nbsp;&nbsp;
+    <select id="assettypespecific"  style="display: none; border: 2px solid green;">
+    </select><br><br>
+    <input type="text" class="rounded" id="price" placeholder="Price" /><br>
+    <input type="text" class="rounded" id="weight" placeholder="Weight" /><br>
+    <input type="text" class="rounded" id="pincode" placeholder="Pincode" /><br><br>
+    <button id="sello" style="display: none;">Make Sell Order</button>
+    <button id="buyo">Make Buy Order</button>
+  </div>
+</body>
+
+</html>
