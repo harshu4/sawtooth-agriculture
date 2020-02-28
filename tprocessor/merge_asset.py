@@ -11,38 +11,45 @@ from sawtooth_signing.secp256k1 import Secp256k1PrivateKey
 from sawtooth_signing import CryptoFactory
 import urllib.request
 from urllib.error import HTTPError
+
 import addresser
-
-
-
-
 PRIVATE_KEY = '347bd546500cdc8c41cf577406c4d3ed84d7bf7a4550848373b6aaf6ae5a14b2'
 PUBLIC_KEY = '03bf808bdfe9cd5bf861d8b79b6eea8acbc65c4a5bb080f2ec4081cad34ed1f705'
 
-PRIVATE_KEY_ASSET = 'b5086b76968a86b137b26490295075c3cb4bd039daee6ac052d0b05db57849fb'
-PUBLIC_KEY_ASSET = '03b5d33a56bb507b7948e9972ab80bb58ec8cb1981d5eb70b8aba06139e1566668'
+PRIVATE_KEY_ASSET1 = 'd23a4adff01c60168c82517f1417d3c75f0b29b4d9282db95de1bc63b9b04833'
+PUBLIC_KEY_ASSET1 = '028c6c1b3a6564e6106c2346eba65e0184daad36cb6f729775d94d8bafe17a3d92'
 
-PRIVATE_KEY_BUYER = '6ad6345339f537a73315a850dfadda1e35710b89c35598f55482ebabe87633e1'
-PUBLIC_KEY_BUYER = '0240678f514587dbd73ab911c21456c30efc096c33e3366902adf190fcda441d3b'
+PRIVATE_KEY_ASSET2 = '483dcdf8c18dbde1f61bb9664c6888a221ab94cf5133ba2643cc4eef8b0a8fde'
+PUBLIC_KEY_ASSET2 =  '032ea4793531c82d428dbde1bc313871e156e0772ed9ba3853afa7db8df30c2b0d'
+
+PRIVATE_KEY_MERGE = '30a2f9b1ae1d32629ee85c36d5c6a41dd75bcbf0d6abac05a711cc4c7dd3731b'
+PUBLIC_KEY_MERGE = '03210e0aa8fffeb52f8c9a6f51201b3e80c1784264894b6a4071d155944046d05b'
+
 
 context = create_context('secp256k1')
-private_key = Secp256k1PrivateKey.from_hex(PRIVATE_KEY)
-private_key_asset = Secp256k1PrivateKey.from_hex(PRIVATE_KEY_ASSET)
+private_key = Secp256k1PrivateKey.from_hex(PRIVATE_KEY_MERGE)
+private_key_asset = Secp256k1PrivateKey.from_hex(PRIVATE_KEY_MERGE)
 signer = CryptoFactory(context).new_signer(private_key)
 signer_asset = CryptoFactory(context).new_signer(private_key_asset)
-public_key_asset = PUBLIC_KEY_ASSET
+public_key_asset = PUBLIC_KEY_MERGE
 public_key = PUBLIC_KEY
 
-payload = agpayload_pb2.Realpayload()
-print(type(payload))
-payload.Action = agpayload_pb2.action.Value('transfer_asset')
-payload.tra_ass.public_key = public_key_asset
-payload.tra_ass.current_owner_pubkey = PUBLIC_KEY_BUYER
-payload.tra_ass.current_owner_pincode = 391230
-payload.tra_ass.timestamp = 0000
 
-input = [addresser.get_farmer_address(PUBLIC_KEY),addresser.get_asset_address(PUBLIC_KEY_ASSET),
-        addresser.get_buyer_address(PUBLIC_KEY_BUYER)]
+payload = agpayload_pb2.Realpayload()
+payload.Action = agpayload_pb2.action.Value('merge_asset')
+payload.mer_ass.public_key_merged= PUBLIC_KEY_MERGE
+payload.mer_ass.public_key1 = PUBLIC_KEY_ASSET1
+payload.mer_ass.public_key2 = PUBLIC_KEY_ASSET2
+payload.mer_ass.public_key_farmer = PUBLIC_KEY
+
+
+
+
+
+
+
+input = [addresser.get_farmer_address(PUBLIC_KEY),addresser.get_asset_address(PUBLIC_KEY_MERGE),
+         addresser.get_asset_address(PUBLIC_KEY_ASSET1),addresser.get_asset_address(PUBLIC_KEY_ASSET2)]
 
 payload_bytes = payload.SerializeToString()
 txn_header_bytes = TransactionHeader(

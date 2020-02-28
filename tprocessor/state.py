@@ -7,6 +7,7 @@ import otp_pb2
 import enums_pb2
 import transporter_pb2
 import addresser
+import copy
 
 
 
@@ -233,7 +234,7 @@ class AgricultureMarketState(object):
 
 
 
-    def split_asset(self,public_key,data,timeout=000):
+    def split_asset(self,public_key,data,timeout=3):
 
         address = addresser.get_asset_address(data.public_key)
         address_sub1 = addresser.get_asset_address(data.public_key1)
@@ -266,15 +267,25 @@ class AgricultureMarketState(object):
         if not index:
             raise InvalidTransaction("No You don't have the asset")
         index = index-1
-        asset1 = farmer.assets_sold[index]
-        asset2 = farmer.assets_sold[index]
+        asset1 = copy.deepcopy(farmer.assets_sold[index])
+        asset2 = copy.deepcopy(farmer.assets_sold[index])
         if farmer.assets_sold[index].weight < data.weight:
             raise InvalidTransaction("The weight of split is bigger than main")
         asset1.weight = data.weight
         asset2.weight = asset2.weight - data.weight
         asset1.previous_asset_pubkey.extend([data.public_key])
         asset2.previous_asset_pubkey.extend([data.public_key])
+        asset1.public_key = data.public_key1
+        asset2.public_key = data.public_key2
         del farmer.assets_sold[index]
+        print(1)
+        print(data.public_key1)
+        print(data.public_key2)
+        farmer.assets_sold.extend([asset1])
+        farmer.assets_sold.extend([asset2])
+        print(farmer)
+        print(asset1)
+        print(asset2)
         data_farm = farmer.SerializeToString()
         data1 = asset1.SerializeToString()
         data2 = asset2.SerializeToString()
@@ -288,6 +299,66 @@ class AgricultureMarketState(object):
         self._context.set_state(updated_state, timeout=self._timeout)
         self._context.set_state(updated_state2, timeout=self._timeout)
 
+
+    def merge_asset(self,public_key,data,timeout=3):
+        print(1)
+        address_farmer = addresser.get_farmer_address(data.public_key_farmer)
+        address_sub1 = addresser.get_asset_address(data.public_key1)
+        address_sub2 = addresser.get_asset_address(data.public_key2)
+        address_merged = addresser.get_asset_address(data.public_key_merged)
+        farmer = farmer_pb2.Farmer()
+        asset  = enums_pb2.assets()
+        asset1 = enums_pb2.assets()
+        asset2 = enums_pb2.assets()
+        state_entries = self._context.get_state(
+            addresses=[address_farmer], timeout=self._timeout)
+        state_entries1 = self._context.get_state(
+            addresses=[address_sub1], timeout=self._timeout)
+        state_entries2 = self._context.get_state(
+            addresses=[address_sub2], timeout=self._timeout)
+        state_entries_merge = self._context.get_state(
+            addresses=[address_merged], timeout=self._timeout)
+
+        print(2)
+        if not state_entries or not state_entries1 or not state_entries2:
+            raise InvalidTransaction('Bro your transaction is invalid')
+        if state_entries_merge:
+            raise InvalidTransaction('state_entries_merge is already an asset')
+        farmer.ParseFromString(state_entries[0].data)
+        asset1.ParseFromString(state_entries1[0].data)
+        asset2.ParseFromString(state_entries2[0].data)
+        index1 = 0
+        index2 = 0
+        i = 0
+
+        while i < len(farmer.assets_sold):
+            if farmer.assets_sold[i].public_key == data.public_key1:
+                index1 = i+1
+
+            elif farmer.assets_sold[i].public_key == data.public_key2:
+                index2 = i+1
+            i +=1
+        if not index1 or not index2:
+            raise InvalidTransaction("No You don't have the asset")
+        print(3)
+        index1 = index1 - 1
+        index2 = index2 - 1
+        del farmer.assets_sold[index1]
+        del farmer.assets_sold[index2-1]
+        asset = copy.deepcopy(asset1)
+        print(100)
+        asset.weight = asset1.weight + asset2.weight
+        asset.previous_asset_pubkey.extend([asset1.public_key])
+        asset.previous_asset_pubkey.extend([asset2.public_key])
+        print(4)
+        updated = asset.SerializeToString()
+        updated_farmer = farmer.SerializeToString()
+        updated_state = {}
+        updated_state[address_farmer] = updated_farmer
+        updated_state1 = {}
+        updated_state[address_merged] = updated
+        self._context.set_state(updated_state, timeout=self._timeout)
+        self._context.set_state(updated_state1, timeout=self._timeout)
 
 def typee(data):
 

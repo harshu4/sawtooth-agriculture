@@ -73,7 +73,11 @@ class MarketTransactionHandler(TransactionHandler):
                 public_key = header.signer_public_key,
                 payload = payload)
 
-
+        elif payload.action == agpayload_pb2.action.Value('merge_asset'):
+            _merge_asset(
+                state = state,
+                public_key = header.signer_public_key,
+                payload = payload)
         else:
             raise InvalidTransaction("Shut up your mouth!,and read your code")
 
@@ -128,3 +132,10 @@ def _get_farmer(state,public_key):
     data = state.get_farmer(
         public_key = public_key)
     print(data)
+
+
+def _merge_asset(state,public_key,payload):
+    state.merge_asset(
+        public_key = public_key,
+        data = payload.data
+    )
