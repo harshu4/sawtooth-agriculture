@@ -1,0 +1,27 @@
+<html>
+
+<head>
+    <title>
+        Search Order
+    </title>
+    <script src="scripts/searchorder.js"></script>
+</head>
+
+<body>
+    <h1>Search Order</h1>
+    <h3>Order Type</h3>
+    <input type="radio" id="buy" name="order" value="buy" checked>
+    <label for="buy">Buy Order</label>&nbsp;&nbsp;
+    <input type="radio" id="sell" name="order" value="sell">
+    <label for="sell">Sell Order</label><br><br>
+    <select id="assettype" style="display: none;">
+    </select>&nbsp;&nbsp;
+    <select id="assettypespecific" style="display: none;">
+    </select><br><br>
+    <input type="text" id="price" placeholder="Price" /><br>
+    <!--<input type="text" id="weight" placeholder="Weight" /><br>-->
+    <input type="text" id="pincode" placeholder="Pincode" /><br><br>
+    <button id="search">Search</button>
+</body>
+
+</html>

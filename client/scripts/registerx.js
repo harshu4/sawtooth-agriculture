@@ -100,7 +100,7 @@ $(document).ready(function () {
         let pbf = new Pbf();
         protobuf.Realpayload.write(payload, pbf)
         let otpTransactionKey = sawtooth.get_otp_address(mobile_number, otp)
-        console.log(otpTransactionKey)
+        //console.log(otpTransactionKey)
         let payloadBytes = pbf.finish();
         let trans_header = sawtooth.getTransactionHeader(signer, [tokey, otpTransactionKey], payloadBytes, [txn_id]);
         let transaction = sawtooth.getTransaction(signer, trans_header, payloadBytes);

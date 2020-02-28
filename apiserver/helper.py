@@ -12,6 +12,7 @@ from sawtooth_sdk.protobuf.batch_pb2 import BatchHeader
 from sawtooth_sdk.protobuf.batch_pb2 import Batch
 from sawtooth_sdk.protobuf.batch_pb2 import BatchList
 import urllib.request
+import math
 from urllib.error import HTTPError
 
 
@@ -77,6 +78,7 @@ def sendBatch(batch_list_bytes):
         return False
 
 
+
 def getTransactionHeader(signer,payload_bytes,tokey,dependencies=[]):
     txn_header_bytes = TransactionHeader(
         family_name='agriculture_market',
@@ -89,3 +91,15 @@ def getTransactionHeader(signer,payload_bytes,tokey,dependencies=[]):
         payload_sha512=sha512(payload_bytes).hexdigest()
     ).SerializeToString()
     return txn_header_bytes
+
+def degToRed(degree):
+    return (degree * 3.14 ) / 180
+
+def getDisBetween(lat1,lon1,lat2,lon2):
+    R = 6371
+    dLat = degToRed(lat2 - lat1)
+    dLon = degToRed(lon2 - lon1)
+    a =math.sin(dLat / 2) * math.sin(dLat / 2) +math.cos(degToRed(lat1)) * math.cos(degToRed(lat2)) *math.sin(dLon / 2) * math.sin(dLon / 2)
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    d= R * c
+    return d

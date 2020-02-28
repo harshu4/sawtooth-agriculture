@@ -1,0 +1,28 @@
+<html>
+
+<head>
+    <title>
+        Buy/Sell Order
+    </title>
+    <script src="scripts/order.js"></script>
+</head>
+
+<body>
+    <h1>Place Order</h1>
+    <h3>Order Type</h3>
+    <input type="radio" id="buy" name="order" value="buy" checked>
+    <label for="buy">Buy Order</label>&nbsp;&nbsp;
+    <input type="radio" id="sell" name="order" value="sell">
+    <label for="sell">Sell Order</label><br><br>
+    <select id="assettype" style="display: none;">
+    </select>&nbsp;&nbsp;
+    <select id="assettypespecific" style="display: none;">
+    </select><br><br>
+    <input type="text" id="price" placeholder="Price" /><br>
+    <input type="text" id="weight" placeholder="Weight" /><br>
+    <input type="text" id="pincode" placeholder="Pincode" /><br><br>
+    <button id="sello" style="display: none;">Make Sell Order</button>
+    <button id="buyo">Make Buy Order</button>
+</body>
+
+</html>
