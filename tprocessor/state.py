@@ -184,7 +184,6 @@ class AgricultureMarketState(object):
 
     def transfer_asset(self,public_key,data,timeout=000):
         """Transfers assets use farmers key to sign"""
-        address_farmer = adresser_get_farmer_address(data.public_key_seller)
         address = addresser.get_asset_address(data.public_key)
         address_buyer = addresser.get_buyer_address(data.current_owner_pubkey)
         farmer =  farmer_pb2.Farmer()
