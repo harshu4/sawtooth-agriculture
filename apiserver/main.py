@@ -97,7 +97,8 @@ def searchOrder():
         elif x['assetType'] == "pulses":
             if x['assetType']>1000:
                 j.remove(x)
-    return json.dumps({"status":"sucess","message":"Order searched...","data":json.dumps(a)})
+        out={"status":"sucess","message":"Order searched...","data": a }
+    return json.dumps(out)
 
 @app.route('/makeSellOrder',methods=['POST'])
 @cross_origin()

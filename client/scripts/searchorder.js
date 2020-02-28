@@ -59200,7 +59200,7 @@ const $ = require('jquery');
 $(document).ready(function () {
 
 
-
+    let handleData;
     request.get({
         url: 'http://127.0.0.1:6060/getAssetTypes'
     }, (err, response) => {
@@ -59273,6 +59273,17 @@ $(document).ready(function () {
         }, (err, response) => {
             if (err) return console.log(err)
             console.log(response.body)
+
+            let data = JSON.parse(response.body);
+            handleData = data;
+
+            for (let d in data['data']) {
+
+                let g = "<div>Asset Type: " + data['data'][d].assetType + "<br>Asset Value:" + data['data'][d].assetValue + "<br>Price: " + data['data'][d].price + "<br>Pincode: " + data['data'][d].pincode + "<br><br><button id=" + data['data'][d].nounce + ">" + ordertype + "</button></div>";
+                console.log(g)
+                $("#rl").append(g);
+            }
+            $("#sr").show();
         })
     })
 
