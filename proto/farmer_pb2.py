@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='farmer.proto',
   package='',
   syntax='proto2',
-  serialized_pb=_b('\n\x0c\x66\x61rmer.proto\x1a\x0b\x65nums.proto\"\xd4\x01\n\x06\x46\x61rmer\x12\x12\n\npublic_key\x18\x01 \x02(\t\x12\x13\n\x0b\x61\x61\x64har_card\x18\x02 \x02(\t\x12\x11\n\ttimestamp\x18\x03 \x02(\x04\x12\x11\n\tfull_name\x18\x04 \x02(\t\x12\x15\n\x05State\x18\x05 \x02(\x0e\x32\x06.state\x12\x0f\n\x07pincode\x18\x06 \x02(\r\x12\x14\n\x0cmobilenumber\x18\x07 \x02(\x04\x12\x10\n\x08\x64istrict\x18\x08 \x02(\t\x12\r\n\x05photo\x18\t \x01(\x0c\x12\x1c\n\x0b\x61ssets_sold\x18\n \x03(\x0b\x32\x07.assets')
+  serialized_pb=_b('\n\x0c\x66\x61rmer.proto\x1a\x0b\x65nums.proto\"\xe4\x01\n\x06\x46\x61rmer\x12\x12\n\npublic_key\x18\x01 \x02(\t\x12\x13\n\x0b\x61\x61\x64har_card\x18\x02 \x02(\t\x12\x11\n\ttimestamp\x18\x03 \x02(\x04\x12\x11\n\tfull_name\x18\x04 \x02(\t\x12\x15\n\x05State\x18\x05 \x02(\x0e\x32\x06.state\x12\x0f\n\x07pincode\x18\x06 \x02(\r\x12\x14\n\x0cmobilenumber\x18\x07 \x02(\x04\x12\x10\n\x08\x64istrict\x18\x08 \x02(\t\x12\r\n\x05photo\x18\t \x01(\x0c\x12\x1c\n\x0b\x61ssets_sold\x18\n \x03(\x0b\x32\x07.assets\x12\x0e\n\x06\x61mount\x18\x0b \x02(\r')
   ,
   dependencies=[enums__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
@@ -105,6 +105,13 @@ _FARMER = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='amount', full_name='Farmer.amount', index=10,
+      number=11, type=13, cpp_type=3, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -118,7 +125,7 @@ _FARMER = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=30,
-  serialized_end=242,
+  serialized_end=258,
 )
 
 _FARMER.fields_by_name['State'].enum_type = enums__pb2._STATE

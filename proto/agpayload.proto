@@ -80,7 +80,9 @@ message Transfer_asset{
   required string current_owner_pubkey =2;
   required uint32 current_owner_pincode =3;
   required uint64 timestamp =4;
-
+  required uint32 amount = 5;
+  required uint32 switch = 6;
+  required string public_key_seller =7;
 }
 //will be called by farmer or by server
 message Split_asset{
@@ -109,4 +111,5 @@ message Realpayload{
     optional Create_asset cre_ass = 7 ;    // again !
     optional Split_asset spl_ass = 8;       // stop it dude !
     optional Merge_asset mer_ass = 9;
+
 }

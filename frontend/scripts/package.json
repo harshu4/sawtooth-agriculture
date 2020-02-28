@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "compile_protobuf": "node compile_protobuf.js > protobuf/protobuf_bundle.json"
+  },
+  "author": "Overclocke Brains",
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "pbf": "^3.2.1",
+    "protobufjs": "^6.8.8",
+    "request": "^2.88.2",
+    "sawtooth-sdk": "^1.0.5"
+  }
+}

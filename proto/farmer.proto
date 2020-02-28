@@ -14,6 +14,7 @@ message Farmer{
   required string district= 8;
   optional bytes photo = 9;      //change to required in production build
   repeated assets assets_sold = 10;
+  required uint32 amount = 11;
 }
 
 /*

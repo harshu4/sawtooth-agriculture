@@ -1,0 +1,362 @@
+body {
+    background-color: #ffffff;
+}
+
+h1 {
+    font-family: 'Helvetica';
+    font-weight: bold;
+    color: #333;
+    font-size: 36px;
+    line-height: 40px;
+}
+
+h2 {
+    font-family: 'Helvetica';
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 26px;
+}
+
+h3 {
+    font-family: 'Helvetica';
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #999999;
+}
+
+h4 {
+    font-size: 15px;
+    line-height: 20px;
+    font-family: 'Helvetica';
+    font-weight: bold;
+    color: #333;
+}
+
+p {
+    font-family: 'Helvetica';
+    font-weight: normal;
+    color: #999;
+    font-size: 12px;
+    line-height: 17px;
+}
+
+a {
+    font-family: 'Helvetica';
+    font-weight: normal;
+    color: #999;
+    font-size: 12px;
+    line-height: 17px;
+    /* cursor: pointer; */
+}
+
+i.fa:not([style*=":"]) {
+    color: #ffffff;
+    background-color: #272A38;
+    font-size: 26px;
+    height: 46px;
+    width: 46px;
+    line-height: 46px;
+}
+
+.btn:not([bs-btn]) {
+    background-color: #272A38;
+    color: #ffffff;
+}
+
+.basic {
+    background-color: #ffffff;
+}
+
+.basic h1 {
+    font-family: 'Helvetica';
+    font-weight: bold;
+    color: #333;
+    font-size: 36px;
+    line-height: 40px;
+}
+
+.basic h2 {
+    font-family: 'Helvetica';
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 26px;
+}
+
+.basic h3 {
+    font-family: 'Helvetica';
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #999999;
+}
+
+.basic h4 {
+    font-size: 15px;
+    line-height: 20px;
+    font-family: 'Helvetica';
+    font-weight: bold;
+    color: #333;
+}
+
+.basic p {
+    font-family: 'Helvetica';
+    font-weight: normal;
+    color: #999;
+    font-size: 12px;
+    line-height: 17px;
+}
+
+.basic a {
+    font-family: 'Helvetica';
+    font-weight: normal;
+    color: #999;
+    font-size: 12px;
+    line-height: 17px;
+}
+
+.basic i.fa:not([style*=":"]) {
+    color: #ffffff;
+    background-color: #272A38;
+    font-size: 26px;
+    height: 46px;
+    width: 46px;
+    line-height: 46px;
+}
+
+.basic .btn:not([bs-btn]) {
+    background-color: #272A38;
+    color: #ffffff;
+}
+
+.negative {
+    background-color: #f5f5f5;
+    background-image: url('//d33rxv6e3thba6.cloudfront.net/2015/10/563603d16a864a4005d059ab/24750-1jlb9w3.jpg');
+}
+
+.negative h1 {
+    color: #ffffff;
+    font-family: 'Helvetica';
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 40px;
+}
+
+.negative h2 {
+    font-family: 'Helvetica';
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.negative h3 {
+    font-size: 18px;
+    line-height: 22px;
+    color: #ffffff;
+    font-weight: normal;
+    font-family: 'Helvetica';
+}
+
+.negative h4 {
+    font-family: 'Helvetica';
+    color: #ffffff;
+    font-size: 15px;
+    line-height: 22px;
+}
+
+.negative p {
+    color: #ffffff;
+    font-family: 'Helvetica';
+    font-size: 12px;
+    line-height: 17px;
+}
+
+.negative a {
+    font-family: 'Helvetica';
+    color: #999999;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.negative i.fa:not([style*=":"]) {
+    color: #272A38;
+    background-color: #ffffff;
+    font-size: 19px;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+}
+
+.negative .btn:not([bs-btn]) {
+    color: #272A38;
+    background-color: #ffffff;
+}
+
+.main {
+    background-color: #272A38;
+}
+
+.main h1 {
+    font-family: 'Helvetica';
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 36px;
+    line-height: 40px;
+}
+
+.main h2 {
+    font-family: 'Helvetica';
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 24px;
+    line-height: 26px;
+}
+
+.main h3 {
+    font-family: 'Helvetica';
+    font-weight: normal;
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.main h4 {
+    font-family: 'Helvetica';
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 15px;
+    line-height: 22px;
+}
+
+.main p {
+    font-family: 'Helvetica';
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 17px;
+    color: #ffffff;
+}
+
+.main a {
+    font-family: 'Helvetica';
+    color: #999999;
+    font-size: 12px;
+    line-height: 17px;
+}
+
+.main i.fa:not([style*=":"]) {
+    color: #ffffff;
+    font-size: 26px;
+    height: 46px;
+    width: 46px;
+    line-height: 46px;
+    background-color: #272A38;
+}
+
+.main .btn:not([bs-btn]) {
+    color: #272A38;
+    background-color: #ffffff;
+}
+
+.secondary {
+    background-color: #1E1E28;
+}
+
+.secondary h1 {
+    font-family: 'Helvetica';
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 50px;
+    line-height: 60px;
+}
+
+.secondary h2 {
+    font-family: 'Helvetica';
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 30px;
+    line-height: 35px;
+    text-transform: none;
+}
+
+.secondary h3 {
+    font-family: 'Helvetica';
+    font-weight: normal;
+    color: #ffffff;
+    font-size: 22px;
+    line-height: 25px;
+}
+
+.secondary h4 {
+    font-family: 'Helvetica';
+    font-size: 15px;
+    line-height: 22px;
+    color: #ffffff;
+}
+
+.secondary p {
+    font-family: 'Helvetica';
+    font-size: 12px;
+    font-weight: normal;
+    color: #ffffff;
+}
+
+.secondary a {
+    font-family: 'Helvetica';
+    font-size: 12px;
+    line-height: 17px;
+    color: #949494;
+}
+
+.secondary i.fa:not([style*=":"]) {
+    color: #272A38;
+    background-color: #ffffff;
+    font-size: 26px;
+    height: 46px;
+    width: 46px;
+    line-height: 46px;
+}
+
+.secondary .btn:not([bs-btn]) {
+    background-color: #ffffff;
+    color: #272A38;
+}
+
+.theme-color {
+    color: #ffffff;
+}
+
+.theme-border-color {
+    border-color: #ffffff;
+}
+
+.theme-background {
+    background-color: #ffffff;
+}
+
+.negative-background {
+    background-color: #f5f5f5;
+    background-image: url('//d33rxv6e3thba6.cloudfront.net/2015/10/563603d16a864a4005d059ab/24750-1jlb9w3.jpg');
+}
+
+.main-color {
+    color: #272A38;
+}
+
+.main-border-color {
+    border-color: #272A38;
+}
+
+.main-background {
+    background-color: #272A38;
+}
+
+.secondary-color {
+    color: #1E1E28;
+}
+
+.secondary-border-color {
+    border-color: #1E1E28;
+}
+
+.secondary-background {
+    background-color: #1E1E28;
+}

@@ -33,7 +33,7 @@ class AgricultureMarketState(object):
         farmer = farmer_pb2.Farmer(
             public_key=public_key, full_name=data.full_name, timestamp=data.timestamp
             ,aadhar_card=data.aadhar_card,State=data.State,pincode=data.pincode,mobilenumber=data.mobilenumber
-            ,district = data.district)
+            ,district = data.district,amount = 0)
 
         state_entries = self._context.get_state(
             addresses=[address], timeout=self._timeout)
@@ -64,7 +64,7 @@ class AgricultureMarketState(object):
         buyer = buyer_pb2.Buyer(
         public_key=public_key, full_name=data.full_name, timestamp=data.timestamp
         ,aadhar_card=data.aadhar_card,State=data.State,pincode=data.pincode,mobilenumber=data.mobilenumber
-        ,district = data.district)
+        ,district = data.district,amount = 5000)
 
         state_entries = self._context.get_state(
             addresses=[address], timeout=self._timeout)
@@ -94,7 +94,7 @@ class AgricultureMarketState(object):
         transporter = transoporter_pb2.Transporter(
         public_key=public_key, full_name=data.full_name, timestamp=data.timestamp
         ,aadhar_card=data.aadhar_card,State=data.State,pincode=data.pincode,mobilenumber=data.mobilenumber
-        ,district = data.district , driving_license = data.driving_license
+        ,district = data.district , driving_license = data.driving_license,amount= 0
         )
         state_entries = self._context.get_state(
             addresses=[address], timeout=self._timeout)
@@ -184,8 +184,12 @@ class AgricultureMarketState(object):
 
     def transfer_asset(self,public_key,data,timeout=000):
         """Transfers assets use farmers key to sign"""
+        if (data.switch == 1):
+            address_farmer = addresser.get_farmer_address(data.public_key_seller)
+        elif(data.switch == 2):
+            address_farmer = addresser.get_buyer_address(data.public_key_seller)
+
         address = addresser.get_asset_address(data.public_key)
-        address_farmer = addresser.get_farmer_address(public_key)
         address_buyer = addresser.get_buyer_address(data.current_owner_pubkey)
         farmer =  farmer_pb2.Farmer()
         asset = enums_pb2.assets()
@@ -218,6 +222,8 @@ class AgricultureMarketState(object):
         asset.current_owner_pubkey = data.current_owner_pubkey
         asset.current_owner_pincode = data.current_owner_pincode
         buyer.assets_bought.extend([asset])
+        buyer.amount = buyer.amount - data.amount
+        farmer.amount = farmer.amount + data.amount
         del farmer.assets_sold[index]
         data_farm = farmer.SerializeToString()
         data = asset.SerializeToString()

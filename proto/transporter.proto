@@ -13,6 +13,7 @@ message Transporter{
   required string driving_license = 9;
   optional bytes photo = 10;       //change to required in production build
   repeated assets assets_transfered = 11;
+  required uint32 amount = 32;
 }
 
 /*

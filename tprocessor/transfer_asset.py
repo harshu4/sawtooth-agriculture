@@ -40,6 +40,9 @@ payload.tra_ass.public_key = public_key_asset
 payload.tra_ass.current_owner_pubkey = PUBLIC_KEY_BUYER
 payload.tra_ass.current_owner_pincode = 391230
 payload.tra_ass.timestamp = 0000
+payload.tra_ass.amount = 400
+payload.tra_ass.switch = 1
+payload.tra_ass.public_key_seller = PUBLIC_KEY
 
 input = [addresser.get_farmer_address(PUBLIC_KEY),addresser.get_asset_address(PUBLIC_KEY_ASSET),
         addresser.get_buyer_address(PUBLIC_KEY_BUYER)]

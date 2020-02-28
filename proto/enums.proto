@@ -97,8 +97,8 @@ enum status {
 }
 
 
-message assets{
-
+message assets
+{
   required uint32 weight =1 ;
   repeated string previous_owner_pubkey = 2;
   repeated uint32 previous_owner_pincode = 3;
