@@ -1,3 +1,6 @@
+#the goal will be to make the maps compatible to inputs and hence create a nice best all in one path setter
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,66 +49,78 @@ charset="utf-8"
 </div>
 
 <script>
-  var origin = [ 73.1812,22.3072];
-  var destination = [72.8311,21.1702];
-  var destination2 = [72.9342,20.5992];
+  var origin = [[73.1812,22.3072],[72.8311,21.1702],[72.9342,20.5992]];
+  var sum_1 = 0
+  var sum_2 = 0
+  for (i=0;i<origin.length;i++){
+    sum_1 = sum+origin[i][0]
+    sum_2 = sum+origin[i][1]
+  }
+
 	mapboxgl.accessToken = 'pk.eyJ1IjoidXBlc2hhY2siLCJhIjoiY2s3Nm41dmdsMGM5NzNncGJkMHRyZ2lxbSJ9.CZdCabNilfXCwIKYUwiYnA';
 var map = new mapboxgl.Map({
 container: 'map',
 style: 'mapbox://styles/mapbox/streets-v11',
-center: [(origin[0]+destination[0])/2,(destination[1]+origin[1])/2],
+    center: [sum_1/origin.length,sum_2/origin.length],
 zoom: 8
 });
 
-var el = document.createElement('div');
-el.className = 'marker';
-el.style.backgroundImage =
-'url(https://i.ibb.co/5vSfVhz/farmer-3.jpg)';
-el.style.width = 51 + 'px';
-el.style.height = 75 + 'px';
+for (i=0;i<origin.length;i++){
+    if (i == 0){
+    var el = document.createElement('div');
+    el.className = 'marker';
+    el.style.backgroundImage =
+    'url(https://i.ibb.co/5vSfVhz/farmer-3.jpg)';
+    el.style.width = 51 + 'px';
+    el.style.height = 75 + 'px';
 
-el.addEventListener('click', function() {
-window.alert('foo');
-});
+    el.addEventListener('click', function() {
+    window.alert('foo');
+    });
 
-new mapboxgl.Marker(el)
-.setLngLat(origin)
-.addTo(map);
-
+    new mapboxgl.Marker(el)
+    .setLngLat(origin)
+    .addTo(map);
+}
+else {
 var el2 = document.createElement('div');
 el2.className = 'marker2';
-el2.style.backgroundImage =
-'url(https://i.ibb.co/wcDG3zX/ss.jpg)';
+el2.style.backgroundImage = 'url(https://i.ibb.co/wcDG3zX/ss.jpg)';
 el2.style.width = 60 + 'px';
 el2.style.height = 60 + 'px';
 
 el2.addEventListener('click', function() {
 window.alert('foo');
+
 });
 
 new mapboxgl.Marker(el2)
 .setLngLat(destination)
 .addTo(map);
+
+}
+
+
+}
+
+
+
+
+
 // A simple line from origin to destination.
 var route = {
 'type': 'FeatureCollection',
-'features': [
-{
-'type': 'Feature',
-'geometry': {
-'type': 'LineString',
-'coordinates': [origin, destination]
-}
-},
-{
-'type': 'Feature',
-'geometry': {
-'type': 'LineString',
-'coordinates': [destination, destination2]
-}
-}
-]
+'features': []
 };
+
+for (i=0;i<origin.length;i++){
+    route.features.push({
+    'type': 'Feature',
+    'geometry': {
+    'type': 'LineString',
+    'coordinates': origin[i]
+    })
+}
 
 // A single point that animates along the route.
 // Coordinates are initially set to origin.
@@ -122,7 +137,7 @@ var point = {
 }
 ]
 };
-console.log(route.features[0])
+
 // Calculate the distance in kilometers between route start/end point.
 var lineDistance = turf.lineDistance(route.features[0], 'kilometers');
 

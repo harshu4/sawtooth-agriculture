@@ -81,7 +81,6 @@ message Transfer_asset{
   required uint32 current_owner_pincode =3;
   required uint64 timestamp =4;
   required uint32 amount = 5;
-  required uint32 switch = 6;
   required string public_key_seller =7;
 }
 //will be called by farmer or by server

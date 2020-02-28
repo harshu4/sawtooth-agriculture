@@ -184,11 +184,7 @@ class AgricultureMarketState(object):
 
     def transfer_asset(self,public_key,data,timeout=000):
         """Transfers assets use farmers key to sign"""
-        if (data.switch == 1):
-            address_farmer = addresser.get_farmer_address(data.public_key_seller)
-        elif(data.switch == 2):
-            address_farmer = addresser.get_buyer_address(data.public_key_seller)
-
+        address_farmer = adresser_get_farmer_address(data.public_key_seller)
         address = addresser.get_asset_address(data.public_key)
         address_buyer = addresser.get_buyer_address(data.current_owner_pubkey)
         farmer =  farmer_pb2.Farmer()
@@ -196,15 +192,22 @@ class AgricultureMarketState(object):
         buyer = buyer_pb2.Buyer()
         state_entries = self._context.get_state(
             addresses=[address], timeout=self._timeout)
-        state_entries_farm = self._context.get_state(
-            addresses=[address_farmer] ,timeout=self._timeout)
         state_entries_buy = self._context.get_state(
             addresses=[address_buyer] , timeout = self._timeout)
-        if not state_entries or not state_entries_buy or not state_entries_farm:
+        if not state_entries or not state_entries_buy:
             raise InvalidTransaction("No No that is so wrong !  1")
 
-        farmer.ParseFromString(state_entries_farm[0].data)
+        #farmer.ParseFromString(state_entries_farm[0].data)
         asset.ParseFromString(state_entries[0].data)
+        if asset.previous_owner_pubkey:
+            address_farmer = addresser.get_buyer_address(data.public_key_seller)
+        else:
+            address_farmer = addresser.get_farmer_address(data.public_key_seller)
+        state_entries_farm = self._context.get_state(
+            addresses=[address_farmer] ,timeout=self._timeout)
+        if not state_entries:
+            raise InvalidTransaction("no farmer found")
+        farmer.ParseFromString(state_entries_farm[0].data)
         buyer.ParseFromString(state_entries_buy[0].data)
         i = 0
         index = None
