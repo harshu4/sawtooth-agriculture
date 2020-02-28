@@ -4,6 +4,8 @@ from flask import request
 from addresser import get_otp_address
 import requests
 import pymongo
+import ghotala1
+import ghotala2
 from helper import getRandom,get_OtpPayload_bytes,getTransactionHeader,getTxn,getBatchHeader,getBatch,sendBatch,getDisBetween
 import json
 import string
@@ -182,7 +184,22 @@ def getAssetTypesSpecific(typ):
         out.append(x['value'])
     return json.dumps({"status":"sucess","values":out})
 
-
+@app.route('/makeSellOrderVoip',methods=['POST'])
+@cross_origin()
+def makeSellOrderVoip():
+    data = request.json
+    code=data['code']
+    weight=data['weight']
+    price=data['price']
+    nounce = getRandom(6, string.digits + string.ascii_lowercase)
+    if code==1:
+        payload={ "assetType": "vegetable_short", "assetValue": "Tomato", "price": int(price), "nounce": nounce,"publick_key":signer.get_public_key().as_hex(), "pincode": "390011", "weight": weight }
+    if code==2:
+        payload = {"assetType": "fruits_long", "assetValue": "Apples", "price": int(price), "nounce": nounce,"publick_key": signer.get_public_key().as_hex(), "pincode": "390011", "weight": weight}
+    if code==3:
+        payload = {"assetType": "grains", "assetValue": "Wheat", "price": int(price), "nounce": nounce,"publick_key": signer.get_public_key().as_hex(), "pincode": "390011", "weight": weight}
+    sell_order.insert_one(payload)
+    return json.dumps({"status":"sucess"})
 
 @app.route('/otp/<mobilenum>',methods=['GET'])
 @cross_origin()
